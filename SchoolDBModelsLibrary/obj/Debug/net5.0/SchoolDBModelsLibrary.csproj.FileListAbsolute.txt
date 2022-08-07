@@ -1,0 +1,15 @@
+C:\Users\maya1\source\repos\BackendSummerSchool\SchoolDBModelsLibrary\bin\Debug\net5.0\SchoolDBModelsLibrary.deps.json
+C:\Users\maya1\source\repos\BackendSummerSchool\SchoolDBModelsLibrary\bin\Debug\net5.0\SchoolDBModelsLibrary.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\SchoolDBModelsLibrary\bin\Debug\net5.0\SchoolDBModelsLibrary.pdb
+C:\Users\maya1\source\repos\BackendSummerSchool\SchoolDBModelsLibrary\obj\Debug\net5.0\SchoolDBModelsLibrary.csproj.AssemblyReference.cache
+C:\Users\maya1\source\repos\BackendSummerSchool\SchoolDBModelsLibrary\obj\Debug\net5.0\SchoolDBModelsLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maya1\source\repos\BackendSummerSchool\SchoolDBModelsLibrary\obj\Debug\net5.0\SchoolDBModelsLibrary.AssemblyInfoInputs.cache
+C:\Users\maya1\source\repos\BackendSummerSchool\SchoolDBModelsLibrary\obj\Debug\net5.0\SchoolDBModelsLibrary.AssemblyInfo.cs
+C:\Users\maya1\source\repos\BackendSummerSchool\SchoolDBModelsLibrary\obj\Debug\net5.0\SchoolDBModelsLibrary.csproj.CoreCompileInputs.cache
+C:\Users\maya1\source\repos\BackendSummerSchool\SchoolDBModelsLibrary\obj\Debug\net5.0\SchoolDBModelsLibrary.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\SchoolDBModelsLibrary\obj\Debug\net5.0\refint\SchoolDBModelsLibrary.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\SchoolDBModelsLibrary\obj\Debug\net5.0\SchoolDBModelsLibrary.pdb
+C:\Users\maya1\source\repos\BackendSummerSchool\SchoolDBModelsLibrary\obj\Debug\net5.0\ref\SchoolDBModelsLibrary.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\SchoolDBModelsLibrary\bin\Debug\net5.0\WritelineLibrary.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\SchoolDBModelsLibrary\bin\Debug\net5.0\WritelineLibrary.pdb
+C:\Users\maya1\source\repos\BackendSummerSchool\SchoolDBModelsLibrary\obj\Debug\net5.0\SchoolDBModelsLibrary.csproj.CopyComplete

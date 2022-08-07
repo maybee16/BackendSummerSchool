@@ -1,0 +1,17 @@
+C:\Users\maya1\source\repos\BackendSummerSchool\DatabaseLibrary\DatabaseLibrary\bin\Debug\net5.0\DatabaseLibrary.deps.json
+C:\Users\maya1\source\repos\BackendSummerSchool\DatabaseLibrary\DatabaseLibrary\bin\Debug\net5.0\DatabaseLibrary.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\DatabaseLibrary\DatabaseLibrary\bin\Debug\net5.0\DatabaseLibrary.pdb
+C:\Users\maya1\source\repos\BackendSummerSchool\DatabaseLibrary\DatabaseLibrary\obj\Debug\net5.0\DatabaseLibrary.csproj.AssemblyReference.cache
+C:\Users\maya1\source\repos\BackendSummerSchool\DatabaseLibrary\DatabaseLibrary\obj\Debug\net5.0\DatabaseLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maya1\source\repos\BackendSummerSchool\DatabaseLibrary\DatabaseLibrary\obj\Debug\net5.0\DatabaseLibrary.AssemblyInfoInputs.cache
+C:\Users\maya1\source\repos\BackendSummerSchool\DatabaseLibrary\DatabaseLibrary\obj\Debug\net5.0\DatabaseLibrary.AssemblyInfo.cs
+C:\Users\maya1\source\repos\BackendSummerSchool\DatabaseLibrary\DatabaseLibrary\obj\Debug\net5.0\DatabaseLibrary.csproj.CoreCompileInputs.cache
+C:\Users\maya1\source\repos\BackendSummerSchool\DatabaseLibrary\DatabaseLibrary\obj\Debug\net5.0\DatabaseLibrary.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\DatabaseLibrary\DatabaseLibrary\obj\Debug\net5.0\refint\DatabaseLibrary.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\DatabaseLibrary\DatabaseLibrary\obj\Debug\net5.0\DatabaseLibrary.pdb
+C:\Users\maya1\source\repos\BackendSummerSchool\DatabaseLibrary\DatabaseLibrary\obj\Debug\net5.0\ref\DatabaseLibrary.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\DatabaseLibrary\DatabaseLibrary\bin\Debug\net5.0\SchoolDBModelsLibrary.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\DatabaseLibrary\DatabaseLibrary\bin\Debug\net5.0\SchoolDBModelsLibrary.pdb
+C:\Users\maya1\source\repos\BackendSummerSchool\DatabaseLibrary\DatabaseLibrary\obj\Debug\net5.0\DatabaseLibrary.csproj.CopyComplete
+C:\Users\maya1\source\repos\BackendSummerSchool\DatabaseLibrary\DatabaseLibrary\bin\Debug\net5.0\WritelineLibrary.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\DatabaseLibrary\DatabaseLibrary\bin\Debug\net5.0\WritelineLibrary.pdb

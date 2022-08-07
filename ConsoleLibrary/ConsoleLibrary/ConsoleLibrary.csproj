@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DatabaseLibrary\DatabaseLibrary\DatabaseLibrary.csproj" />
+    <ProjectReference Include="..\..\SchoolDBModelsLibrary\SchoolDBModelsLibrary.csproj" />
+    <ProjectReference Include="..\..\WritelineLibrary\WritelineLibrary.csproj" />
+  </ItemGroup>
+
+</Project>

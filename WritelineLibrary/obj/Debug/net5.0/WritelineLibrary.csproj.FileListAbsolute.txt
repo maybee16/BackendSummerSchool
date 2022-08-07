@@ -1,0 +1,12 @@
+C:\Users\maya1\source\repos\BackendSummerSchool\WritelineLibrary\bin\Debug\net5.0\WritelineLibrary.deps.json
+C:\Users\maya1\source\repos\BackendSummerSchool\WritelineLibrary\bin\Debug\net5.0\WritelineLibrary.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\WritelineLibrary\bin\Debug\net5.0\WritelineLibrary.pdb
+C:\Users\maya1\source\repos\BackendSummerSchool\WritelineLibrary\obj\Debug\net5.0\WritelineLibrary.csproj.AssemblyReference.cache
+C:\Users\maya1\source\repos\BackendSummerSchool\WritelineLibrary\obj\Debug\net5.0\WritelineLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maya1\source\repos\BackendSummerSchool\WritelineLibrary\obj\Debug\net5.0\WritelineLibrary.AssemblyInfoInputs.cache
+C:\Users\maya1\source\repos\BackendSummerSchool\WritelineLibrary\obj\Debug\net5.0\WritelineLibrary.AssemblyInfo.cs
+C:\Users\maya1\source\repos\BackendSummerSchool\WritelineLibrary\obj\Debug\net5.0\WritelineLibrary.csproj.CoreCompileInputs.cache
+C:\Users\maya1\source\repos\BackendSummerSchool\WritelineLibrary\obj\Debug\net5.0\WritelineLibrary.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\WritelineLibrary\obj\Debug\net5.0\refint\WritelineLibrary.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\WritelineLibrary\obj\Debug\net5.0\WritelineLibrary.pdb
+C:\Users\maya1\source\repos\BackendSummerSchool\WritelineLibrary\obj\Debug\net5.0\ref\WritelineLibrary.dll
