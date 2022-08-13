@@ -4,7 +4,7 @@
     "net5.0": {
       "WritelineLibrary/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
+        "framework": "Unsupported,Version=v0.0",
         "compile": {
           "bin/placeholder/WritelineLibrary.dll": {}
         },
@@ -83,13 +83,19 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "frameworkReferences": {
-          "Microsoft.NETCore.App": {
-            "privateAssets": "all"
-          }
-        },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Проект WritelineLibrary несовместим с net5.0 (.NETCoreApp,Version=v5.0). Проект WritelineLibrary поддерживает: net6.0 (.NETCoreApp,Version=v6.0)",
+      "libraryId": "WritelineLibrary",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

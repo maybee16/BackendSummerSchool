@@ -1,8 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "Xu75vc19x85+vU3uK5zHJUWGblUyh5edJRA8bJnXEU5U8jZ+UhHFtRUrh2LLWDm0DFZ93a9oGEdz9Q5Dgz/qEw==",
-  "success": true,
+  "dgSpecHash": "1ojJ9bs7INhwuerPM0RYvrze3HM/9SSETv6p3xWUkGmHNvEPQWJhXytJg3RVvklKPgPIleMxDyYshKfTUvYRkQ==",
+  "success": false,
   "projectFilePath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\SchoolDBModelsLibrary\\SchoolDBModelsLibrary.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Проект WritelineLibrary несовместим с net5.0 (.NETCoreApp,Version=v5.0). Проект WritelineLibrary поддерживает: net6.0 (.NETCoreApp,Version=v6.0)",
+      "libraryId": "WritelineLibrary",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v5.0": {
       "Homework3/1.0.0": {
         "dependencies": {
-          "ConsoleLibrary": "1.0.0"
+          "ConsoleLibrary": "1.0.0",
+          "WritelineLibrary": "1.0.0"
         },
         "runtime": {
           "Homework3.dll": {}

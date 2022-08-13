@@ -1,5 +1,7 @@
-﻿using DatabaseLibrary;
-using SchoolDBModelsLibrary;
+﻿using EF;
+using EF.Data;
+using EF.DbModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using WritelineLibrary;
@@ -10,213 +12,260 @@ namespace ConsoleLibrary
     {
         List<string> tableList = new() { "Students", "Mentors", "Departments", "Grades" };
 
-        #region Students operations
-        private void CreateStudents()
-        {
-            Students student = new();
+        StudentRepository studentRepository = new();
+        MentorsRepository mentorsRepository = new();
+        DepartmentsRepository departmentsRepository = new();
+        GradesRepository gradesRepository = new();
 
-            if (!student.SetProperties())
+        private static void SetStudents(Students students)
+        {
+            string str;
+
+            ColorMessage.Get("Введите имя:", ConsoleColor.Yellow);
+
+            while (true)
+            {
+                str = Console.ReadLine();
+
+                if (str == "exit")
+                {
+                    return;
+                }
+                else if (str != "")
+                {
+                    students.FirstName = str;
+                    break;
+                }
+                else
+                {
+                    ColorMessage.Get("Введите корректное значение:", ConsoleColor.Red);
+                }
+            }
+
+            ColorMessage.Get("Введите фамилию:", ConsoleColor.Yellow);
+
+            while (true)
+            {
+                str = Console.ReadLine();
+
+                if (str == "exit")
+                {
+                    return;
+                }
+                else if (str != "")
+                {
+                    students.LastName = str;
+                    break;
+                }
+                else
+                {
+                    ColorMessage.Get("Введите корректное значение:", ConsoleColor.Red);
+                }
+            }
+
+            ColorMessage.Get("Введите отчество:", ConsoleColor.Yellow);
+            str = Console.ReadLine();
+
+            if (str == "exit")
             {
                 return;
             }
+            else
+            {
+                students.Patronymic = str;
+            }
 
-            Database database = new();
-            database.Create(student);
+            ColorMessage.Get("Введите Id направления:", ConsoleColor.Yellow);
+
+            while (true)
+            {
+                str = Console.ReadLine();
+
+                if (str == "exit")
+                {
+                    return;
+                }
+                else if (Guid.TryParse(str, out Guid id))
+                {
+                    students.DepartmentsId = id;
+                    break;
+                }
+                else
+                {
+                    ColorMessage.Get("Введите корректное значение:", ConsoleColor.Red);
+                }
+            }
         }
 
-        private void ReadStudents()
+        private static void SetMentors(Mentors mentors)
         {
-            Database database = new();
-            database.ReadStudents();
-        }
+            string str;
 
-        private void UpdateStudents()
-        {
-            Students student = new();
+            ColorMessage.Get("Введите имя:", ConsoleColor.Yellow);
 
-            if (!student.SetId())
+            while (true)
+            {
+                str = Console.ReadLine();
+
+                if (str == "exit")
+                {
+                    return;
+                }
+                else if (str != "")
+                {
+                    mentors.FirstName = str;
+                    break;
+                }
+                else
+                {
+                    ColorMessage.Get("Введите корректное значение:", ConsoleColor.Red);
+                }
+            }
+
+            ColorMessage.Get("Введите фамилию:", ConsoleColor.Yellow);
+
+            while (true)
+            {
+                str = Console.ReadLine();
+
+                if (str == "exit")
+                {
+                    return;
+                }
+                else if (str != "")
+                {
+                    mentors.LastName = str;
+                    break;
+                }
+                else
+                {
+                    ColorMessage.Get("Введите корректное значение:", ConsoleColor.Red);
+                }
+            }
+
+            ColorMessage.Get("Введите отчество:", ConsoleColor.Yellow);
+            str = Console.ReadLine();
+
+            if (str == "exit")
             {
                 return;
             }
-
-            if (!student.SetProperties())
+            else
             {
-                return;
+                mentors.Patronymic = str;
             }
 
-            Database database = new();
-            database.Update(student);
+            ColorMessage.Get("Введите Id направления:", ConsoleColor.Yellow);
+
+            while (true)
+            {
+                str = Console.ReadLine();
+
+                if (str == "exit")
+                {
+                    return;
+                }
+                else if (Guid.TryParse(str, out Guid id))
+                {
+                    mentors.DepartmentsId = id;
+                    break;
+                }
+                else
+                {
+                    ColorMessage.Get("Введите корректное значение:", ConsoleColor.Red);
+                }
+            }
         }
 
-        private void DeleteStudents()
+        private static void SetDepartments(Departments departments)
         {
-            Students student = new();
+            string str;
+            ColorMessage.Get("Введите название отделения:", ConsoleColor.Yellow);
 
-            if (!student.SetId())
+            while (true)
             {
-                return;
+                str = Console.ReadLine();
+                if (str == "exit")
+                {
+                    return;
+                }
+                else if (str != "")
+                {
+                    departments.Name = str;
+                    break;
+                }
+                else
+                {
+                    ColorMessage.Get("Введите корректное значение:", ConsoleColor.Red);
+                }
             }
-
-            Database database = new();
-            database.Delete(student);
         }
-        #endregion
 
-        #region Mentors operations
-        private void CreateMentors()
+        private static void SetGrades(Grades grades)
         {
-            Mentors mentor = new();
+            string str;
+            ColorMessage.Get("Введите id студента:", ConsoleColor.Yellow);
 
-            if (!mentor.SetProperties())
+            while (true)
             {
-                return;
+                str = Console.ReadLine();
+                if (str == "exit")
+                {
+                    return;
+                }
+                else if (Guid.TryParse(str, out Guid studentId))
+                {
+                    grades.StudentId = studentId;
+                    break;
+                }
+                else
+                {
+                    ColorMessage.Get("Введите корректное значение:", ConsoleColor.Red);
+                }
             }
 
-            Database database = new();
-            database.Create(mentor);
+            ColorMessage.Get("Введите оценку:", ConsoleColor.Yellow);
+
+            while (true)
+            {
+                str = Console.ReadLine();
+                if (str == "exit")
+                {
+                    return;
+                }
+                else if (int.TryParse(str, out int val))
+                {
+                    grades.Value = val;
+                    break;
+                }
+                else
+                {
+                    ColorMessage.Get("Введите корректное значение:", ConsoleColor.Red);
+                }
+            }
         }
 
-        private void ReadMentors()
+        private static Guid GetId()
         {
-            Database database = new();
-            database.ReadMentors();
-        }
+            ColorMessage.Get("Введите Id:", ConsoleColor.Yellow);
 
-        private void UpdateMentors()
-        {
-            Mentors mentor = new();
-
-            if (!mentor.SetId())
+            while (true)
             {
-                return;
+                string str = Console.ReadLine();
+                //if (str == "exit")
+                //{
+                //    return ;
+                //}
+                if (Guid.TryParse(str, out Guid id))
+                {
+                    return id;
+                }
+                else
+                {
+                    ColorMessage.Get("Введите корректное значение:", ConsoleColor.Red);
+                }
             }
-
-            if (!mentor.SetProperties())
-            {
-                return;
-            }
-
-            Database database = new();
-            database.Update(mentor);
         }
-
-        private void DeleteMentors()
-        {
-            Mentors mentor = new();
-
-            if (!mentor.SetId())
-            {
-                return;
-            }
-
-            Database database = new();
-            database.Delete(mentor);
-        }
-        #endregion
-
-        #region Departments operations
-        private void CreateDepartments()
-        {
-            Departments department = new();
-
-            if (!department.SetDepartment())
-            {
-                return;
-            }
-
-            Database database = new();
-            database.Create(department);
-        }
-
-        private void ReadDepartments()
-        {
-            Database database = new();
-            database.ReadDepartments();
-        }
-
-        private void UpdateDepartments()
-        {
-            Departments department = new();
-
-            if (!department.SetId())
-            {
-                return;
-            }
-
-            if (!department.SetDepartment())
-            {
-                return;
-            }
-
-            Database database = new();
-            database.Update(department);
-        }
-
-        private void DeleteDepartments()
-        {
-            Departments department = new();
-
-            if (!department.SetId())
-            {
-                return;
-            }
-
-            Database database = new();
-            database.Delete(department);
-        }
-        #endregion
-
-        #region Grades operations
-        private void CreateGrades()
-        {
-            Grades grade = new();
-
-            if (!grade.SetGrade())
-            {
-                return;
-            }
-
-            Database database = new();
-            database.Create(grade);
-        }
-
-        private void ReadGrades()
-        {
-            Database database = new();
-            database.ReadGrades();
-        }
-
-        private void UpdateGrades()
-        {
-            Grades grade = new();
-
-            if (!grade.SetId())
-            {
-                return;
-            }
-
-            if (!grade.SetGrade())
-            {
-                return;
-            }
-
-            Database database = new();
-            database.Update(grade);
-        }
-
-        private void DeleteGrades()
-        {
-            Grades grade = new();
-
-            if (!grade.SetId())
-            {
-                return;
-            }
-
-            Database database = new();
-            database.Delete(grade);
-        }
-        #endregion
 
         private void Operations(string tableName)
         {
@@ -229,97 +278,178 @@ namespace ConsoleLibrary
                 {
                     if (tableName == tableList[0])
                     {
-                        CreateStudents();
+                        Students students = new()
+                        {
+                            Id = Guid.NewGuid()
+                        };
+
+                        SetStudents(students);
+                        studentRepository.Add(students);
                     }
                     else if (tableName == tableList[1])
                     {
-                        CreateMentors();
+                        Mentors mentors = new()
+                        {
+                            Id = Guid.NewGuid()
+                        };
+
+                        SetMentors(mentors);
+                        mentorsRepository.Add(mentors);
                     }
                     else if (tableName == tableList[2])
                     {
-                        CreateDepartments();
+                        Departments departments = new()
+                        {
+                            Id = Guid.NewGuid()
+                        };
+
+                        SetDepartments(departments);
+                        departmentsRepository.Add(departments);
                     }
                     else if (tableName == tableList[3])
                     {
-                        CreateGrades();
+                        Grades grades = new()
+                        {
+                            Id = Guid.NewGuid()
+                        };
+
+                        SetGrades(grades);
+                        gradesRepository.Add(grades);
                     }
                 }
                 else if (choice == "2")
                 {
                     if (tableName == tableList[0])
                     {
-                        ReadStudents();
+                        studentRepository.GetStudent(GetId());
                     }
                     else if (tableName == tableList[1])
                     {
-                        ReadMentors();
+                        mentorsRepository.GetMentor(GetId());
                     }
                     else if (tableName == tableList[2])
                     {
-                        ReadDepartments();
+                        departmentsRepository.GetDepartment(GetId());
                     }
                     else if (tableName == tableList[3])
                     {
-                        ReadGrades();
+                        gradesRepository.GetGrade(GetId());
                     }
                 }
                 else if (choice == "3")
                 {
                     if (tableName == tableList[0])
                     {
-                        UpdateStudents();
+                        studentRepository.Get();
                     }
                     else if (tableName == tableList[1])
                     {
-                        UpdateMentors();
+                        mentorsRepository.Get();
                     }
                     else if (tableName == tableList[2])
                     {
-                        UpdateDepartments();
+                        departmentsRepository.Get();
                     }
                     else if (tableName == tableList[3])
                     {
-                        UpdateGrades();
+                        gradesRepository.Get();
                     }
                 }
                 else if (choice == "4")
                 {
+                    Guid id;
                     if (tableName == tableList[0])
                     {
-                        DeleteStudents();
+                        id = GetId();
+                        Students students = new();
+                        SetStudents(students);
+
+                        studentRepository.Update(
+                            id,
+                            students.FirstName,
+                            students.LastName,
+                            students.Patronymic,
+                            students.DepartmentsId);
                     }
                     else if (tableName == tableList[1])
                     {
-                        DeleteMentors();
+                        id = GetId();
+                        Mentors mentors = new();
+                        SetMentors(mentors);
+
+                        mentorsRepository.Update(
+                            id,
+                            mentors.FirstName,
+                            mentors.LastName,
+                            mentors.Patronymic,
+                            mentors.DepartmentsId);
                     }
                     else if (tableName == tableList[2])
                     {
-                        DeleteDepartments();
+                        id = GetId();
+                        Departments departments = new();
+                        SetDepartments(departments);
+
+                        departmentsRepository.Update(
+                            id,
+                            departments.Name);
                     }
                     else if (tableName == tableList[3])
                     {
-                        DeleteGrades();
+                        id = GetId();
+                        Grades grades = new();
+                        SetGrades(grades);
+
+                        gradesRepository.Update(
+                            id,
+                            grades.StudentId,
+                            grades.Value);
                     }
                 }
                 else if (choice == "5")
+                {
+                    if (tableName == tableList[0])
+                    {
+                        studentRepository.Delete(GetId());
+                    }
+                    else if (tableName == tableList[1])
+                    {
+                        mentorsRepository.Delete(GetId());
+                    }
+                    else if (tableName == tableList[2])
+                    {
+                        departmentsRepository.Delete(GetId());
+                    }
+                    else if (tableName == tableList[3])
+                    {
+                        gradesRepository.Delete(GetId());
+                    }
+                }
+                else if (choice == "6")
                 {
                     break;
                 }
             }
         }
 
-        private void GetOperList()
+        private static void GetOperList()
         {
             ColorMessage.Get("Выберите операцию:\n" +
                       "1. Добавить данные\n" +
-                      "2. Получить данные\n" +
-                      "3. Обновить данные\n" +
-                      "4. Удалить данные\n" +
-                      "5. Вернуться\n", ConsoleColor.Yellow);
+                      "2. Получить данные по Id\n" +
+                      "3. Получить всю таблицу\n" +
+                      "4. Обновить данные\n" +
+                      "5. Удалить данные\n" +
+                      "6. Вернуться\n" +
+                      "'exit' - отменить операцию\n", ConsoleColor.Yellow);
         }
 
         public void Run()
         {
+            using Context context = new();
+            //context.Database.EnsureCreated();
+            context.Database.Migrate();
+
             while (true)
             {
                 ColorMessage.Get("Выберите таблицу:\n" +
