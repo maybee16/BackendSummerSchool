@@ -33,7 +33,9 @@ namespace ClientService.StudentCommands
 
             return new UpdateStudentResponse
             {
-
+                Id = null,
+                IsSuccess = true,
+                Errors = default
             };
         }
     }

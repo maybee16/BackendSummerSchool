@@ -12,7 +12,7 @@ namespace ConsoleLibrary
     {
         List<string> tableList = new() { "Students", "Mentors", "Departments", "Grades" };
 
-        StudentRepository studentRepository = new();
+        StudentsRepository studentRepository = new();
         MentorsRepository mentorsRepository = new();
         DepartmentsRepository departmentsRepository = new();
         GradesRepository gradesRepository = new();

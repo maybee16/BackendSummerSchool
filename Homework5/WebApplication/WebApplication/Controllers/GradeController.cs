@@ -3,6 +3,7 @@ using ClientService.GradeRequests;
 using ClientService.GradeResponses;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Net;
 
 namespace ClientService.Controllers
 {
@@ -15,7 +16,12 @@ namespace ClientService.Controllers
             [FromServices] ICreateGradeCommand command,
             [FromBody] CreateGradeRequest request)
         {
-            return command.Execute(request);
+            CreateGradeResponse response = new();
+
+            response = command.Execute(request);
+            HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.Created : (int)HttpStatusCode.BadRequest;
+
+            return response;
         }
 
         [HttpGet("get")]
@@ -24,8 +30,14 @@ namespace ClientService.Controllers
             [FromQuery] Guid id)
         {
             GetGradeRequest request = new();
+            GetGradeResponse response = new();
+
             request.Id = id;
-            return command.Execute(request);
+
+            response = command.Execute(request);
+            HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.OK : (int)HttpStatusCode.BadRequest;
+
+            return response;
         }
 
         [HttpPost("update")]
@@ -33,7 +45,12 @@ namespace ClientService.Controllers
             [FromServices] IUpdateGradeCommand command,
             [FromBody] UpdateGradeRequest request)
         {
-            return command.Execute(request);
+            UpdateGradeResponse response = new();
+
+            response = command.Execute(request);
+            HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.Created : (int)HttpStatusCode.BadRequest;
+
+            return response;
         }
 
         [HttpGet("find")]
@@ -42,8 +59,14 @@ namespace ClientService.Controllers
             [FromQuery] int value)
         {
             FindGradeRequest request = new();
+            FindGradeResponse response = new();
+
             request.Value = value;
-            return command.Execute(request);
+
+            response = command.Execute(request);
+            HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.OK : (int)HttpStatusCode.BadRequest;
+
+            return response;
         }
     }
 }

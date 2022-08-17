@@ -33,7 +33,9 @@ namespace ClientService.GradeCommands
 
             return new UpdateGradeResponse
             {
-
+                Id = null,
+                IsSuccess = true,
+                Errors = default
             };
         }
     }

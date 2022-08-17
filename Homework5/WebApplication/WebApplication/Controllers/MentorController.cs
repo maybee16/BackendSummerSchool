@@ -4,6 +4,7 @@ using ClientService.MentorResponses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Net;
 
 namespace ClientService.Controllers
 {
@@ -16,7 +17,12 @@ namespace ClientService.Controllers
             [FromServices] ICreateMentorCommand command,
             [FromBody] CreateMentorRequest request)
         {
-            return command.Execute(request);
+            CreateMentorResponse response = new();
+
+            response = command.Execute(request);
+            HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.Created : (int)HttpStatusCode.BadRequest;
+
+            return response;
         }
 
         [HttpGet("get")]
@@ -25,8 +31,14 @@ namespace ClientService.Controllers
             [FromQuery] Guid id)
         {
             GetMentorRequest request = new();
+            GetMentorResponse response = new();
+
             request.Id = id;
-            return command.Execute(request);
+
+            response = command.Execute(request);
+            HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.OK : (int)HttpStatusCode.BadRequest;
+
+            return response;
         }
 
         [HttpPost("update")]
@@ -34,7 +46,12 @@ namespace ClientService.Controllers
             [FromServices] IUpdateMentorCommand command,
             [FromBody] UpdateMentorRequest request)
         {
-            return command.Execute(request);
+            UpdateMentorResponse response = new();
+
+            response = command.Execute(request);
+            HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.Created : (int)HttpStatusCode.BadRequest;
+
+            return response;
         }
 
         [HttpGet("find")]
@@ -43,8 +60,14 @@ namespace ClientService.Controllers
             [FromQuery] string department)
         {
             FindMentorRequest request = new();
+            FindMentorResponse response = new();
+
             request.Department = department;
-            return command.Execute(request);
+
+            response = command.Execute(request);
+            HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.OK : (int)HttpStatusCode.BadRequest;
+
+            return response;
         }
     }
 }

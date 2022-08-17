@@ -31,20 +31,11 @@ namespace ClientService.StudentCommands
                 };
             }
 
-            //student.FirstName = request.FirstName;
-            //student.LastName = request.LastName;
-            //student.Patronymic = request.Patronymic;
-            //student.Department = request.Department;
-
-            // send to Server
-
             return new CreateStudentResponse
             {
-                // get response from server
-
-                //Id = _repository.Add(student),
-                //IsSuccess = true,
-                //Errors = default
+                Id = null,
+                IsSuccess = true,
+                Errors = default
             };
         }
     }

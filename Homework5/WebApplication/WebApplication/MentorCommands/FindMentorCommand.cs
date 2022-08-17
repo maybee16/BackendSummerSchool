@@ -33,6 +33,9 @@ namespace ClientService.MentorCommands
 
             return new FindMentorResponse
             {
+                Students = null,
+                IsSuccess = true,
+                Errors = default
             };
         }
     }

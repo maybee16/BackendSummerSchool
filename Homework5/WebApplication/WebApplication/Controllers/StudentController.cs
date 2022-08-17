@@ -5,6 +5,7 @@ using ClientService.StudentRequests;
 using ClientService.StudentResponses;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Net;
 
 namespace ClientService.Controllers
 {
@@ -17,7 +18,12 @@ namespace ClientService.Controllers
             [FromServices] ICreateStudentCommand command,
             [FromBody] CreateStudentRequest request)
         {
-            return command.Execute(request);
+            CreateStudentResponse response = new();
+
+            response = command.Execute(request);
+            HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.Created : (int)HttpStatusCode.BadRequest;
+
+            return response;
         }
 
         [HttpGet("get")]
@@ -25,9 +31,15 @@ namespace ClientService.Controllers
             [FromServices] IGetStudentCommand command,
             [FromQuery] Guid id)
         {
+            GetStudentResponse response = new();
             GetStudentRequest request = new();
+
             request.Id = id;
-            return command.Execute(request);
+            
+            response = command.Execute(request);
+            HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.OK : (int)HttpStatusCode.BadRequest;
+
+            return response;
         }
 
         [HttpPost("update")]
@@ -35,7 +47,12 @@ namespace ClientService.Controllers
             [FromServices] IUpdateStudentCommand command,
             [FromBody] UpdateStudentRequest request)
         {
-            return command.Execute(request);
+            UpdateStudentResponse response = new();
+
+            response = command.Execute(request);
+            HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.Created : (int)HttpStatusCode.BadRequest;
+
+            return response;
         }
 
         [HttpGet("find")]
@@ -44,8 +61,14 @@ namespace ClientService.Controllers
             [FromQuery] string department)
         {
             FindStudentRequest request = new();
+            FindStudentResponse response = new();
+
             request.Department = department;
-            return command.Execute(request);
+
+            response = command.Execute(request);
+            HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.OK : (int)HttpStatusCode.BadRequest;
+
+            return response;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using EF.DbModels;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ClientService.Context
 {
@@ -13,7 +12,7 @@ namespace ClientService.Context
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
-            
+
         }
 
     }

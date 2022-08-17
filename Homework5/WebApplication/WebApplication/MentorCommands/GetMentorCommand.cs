@@ -36,7 +36,12 @@ namespace ClientService.MentorCommands
 
             return new GetMentorResponse
             {
-
+                FirstName = null,
+                LastName = null,
+                Patronymic = null,
+                Department = null,
+                IsSuccess = true,
+                Errors = default
             };
         }
     }

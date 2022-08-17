@@ -33,7 +33,9 @@ namespace ClientService.DepartmentCommands
 
             return new UpdateDepartmentResponse
             {
-
+                Id = null,
+                IsSuccess = true,
+                Errors = default
             };
         }
     }

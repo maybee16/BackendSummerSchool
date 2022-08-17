@@ -33,6 +33,9 @@ namespace ClientService.GradeCommands
 
             return new FindGradeResponse
             {
+                Grades = null,
+                IsSuccess = true,
+                Errors = default
             };
         }
     }

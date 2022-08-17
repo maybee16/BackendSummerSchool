@@ -35,7 +35,11 @@ namespace ClientService.GradeCommands
 
             return new GetGradeResponse
             {
-
+                StudentId = null,
+                Value = null,
+                Student = null,
+                IsSuccess = true,
+                Errors = default
             };
         }
     }

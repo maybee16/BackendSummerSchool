@@ -33,6 +33,9 @@ namespace ClientService.StudentCommands
 
             return new FindStudentResponse
             {
+                Students = null,
+                IsSuccess = true,
+                Errors = default
             };
         }
     }

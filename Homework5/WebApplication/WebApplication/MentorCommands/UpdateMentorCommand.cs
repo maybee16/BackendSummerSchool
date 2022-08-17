@@ -33,7 +33,9 @@ namespace ClientService.MentorCommands
 
             return new UpdateMentorResponse
             {
-
+                Id = null,
+                IsSuccess = true,
+                Errors = default
             };
         }
     }

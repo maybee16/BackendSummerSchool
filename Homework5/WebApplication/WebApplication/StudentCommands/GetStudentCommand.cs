@@ -37,14 +37,13 @@ namespace ClientService.StudentCommands
 
             return new GetStudentResponse
             {
-                // send to Server
-                /*FirstName = _students.FirstName,
-                LastName = _students.LastName,
-                Patronymic = _students.Patronymic,
-                Department = _students.Departments,
-                Grade = _students.Grades,
-                IsSuccess = false,
-                Errors = validationResult.Errors.Select(x => x.ErrorMessage).ToList()*/
+                FirstName = null,
+                LastName = null,
+                Patronymic = null,
+                Department = null,
+                Grade = null,
+                IsSuccess = true,
+                Errors = default
             };
         }
     }
