@@ -75,7 +75,7 @@ namespace ConsoleLibrary
                 students.Patronymic = str;
             }
 
-            ColorMessage.Get("Введите Id направления:", ConsoleColor.Yellow);
+            ColorMessage.Get("Введите название направления:", ConsoleColor.Yellow);
 
             while (true)
             {
@@ -85,9 +85,9 @@ namespace ConsoleLibrary
                 {
                     return;
                 }
-                else if (Guid.TryParse(str, out Guid id))
+                else if (str is not null)
                 {
-                    students.DepartmentsId = id;
+                    students.Department = str;
                     break;
                 }
                 else
@@ -369,7 +369,7 @@ namespace ConsoleLibrary
                             students.FirstName,
                             students.LastName,
                             students.Patronymic,
-                            students.DepartmentsId);
+                            students.Department);
                     }
                     else if (tableName == tableList[1])
                     {
@@ -382,7 +382,7 @@ namespace ConsoleLibrary
                             mentors.FirstName,
                             mentors.LastName,
                             mentors.Patronymic,
-                            mentors.DepartmentsId);
+                            mentors.Department);
                     }
                     else if (tableName == tableList[2])
                     {
@@ -449,6 +449,17 @@ namespace ConsoleLibrary
             using Context context = new();
             //context.Database.EnsureCreated();
             context.Database.Migrate();
+
+            //Students students = new Students()
+            //{
+            //    Id = Guid.NewGuid(),
+            //    FirstName = "qwerty",
+            //    LastName = "qwwerty",
+            //    Department = "Backend"
+            //};
+
+            //studentRepository.Add(students);
+            Students student = studentRepository.GetStudent(Guid.Parse("7F5D5953-E371-4112-ADDB-83044F4D3073"));
 
             while (true)
             {

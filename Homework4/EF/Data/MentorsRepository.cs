@@ -1,10 +1,11 @@
-﻿using EF.DbModels;
+﻿using EF.Data.Interfaces;
+using EF.DbModels;
 using Microsoft.EntityFrameworkCore;
 using WritelineLibrary;
 
 namespace EF.Data
 {
-    public class MentorsRepository
+    public class MentorsRepository : IMentorsRepository
     {
         private readonly Context _context;
 
@@ -17,6 +18,9 @@ namespace EF.Data
         {
             try
             {
+                Departments departments = _context.Departments.First(x => x.Name == mentors.Department);
+                mentors.DepartmentsId = departments.Id;
+
                 _context.Mentors.Add(mentors);
                 _context.SaveChanges();
             }
@@ -67,12 +71,12 @@ namespace EF.Data
             {
                 List<Mentors> mentors = _context.Mentors.ToList();
 
-                ColorMessage.Get("Id\tFirstName\tLastName\tPatronymic\tDepartmentId", ConsoleColor.Blue);
+                ColorMessage.Get("Id\tFirstName\tLastName\tPatronymic\tDepartment", ConsoleColor.Blue);
 
                 foreach (var mentor in mentors)
                 {
                     ColorMessage.Get($"{mentor.Id}\t{mentor.FirstName}\t{mentor.LastName}\t" +
-                        $"{mentor.Patronymic}\t{mentor.DepartmentsId}", ConsoleColor.Green);
+                        $"{mentor.Patronymic}\t{mentor.Department}", ConsoleColor.Green);
                 }
             }
             catch (ArgumentNullException ex)
@@ -85,18 +89,20 @@ namespace EF.Data
             }
         }
 
-        public void Update(Guid id, string firstName, string lastName, string patronymic, Guid departmentsId)
+        public void Update(Guid id, string firstName, string lastName, string patronymic, string department)
         {
             try
             {
-                Mentors mentor = _context.Mentors.First(x => x.Id == id);
+                Mentors mentors = _context.Mentors.First(x => x.Id == id);
+                Departments departments = _context.Departments.First(x => x.Name == mentors.Department);
 
-                mentor.FirstName = firstName;
-                mentor.LastName = lastName;
-                mentor.Patronymic = patronymic;
-                mentor.DepartmentsId = departmentsId;
+                mentors.FirstName = firstName;
+                mentors.LastName = lastName;
+                mentors.Patronymic = patronymic;
+                mentors.Department = department;
+                mentors.DepartmentsId = departments.Id;
 
-                _context.Mentors.Update(mentor);
+                _context.Mentors.Update(mentors);
                 _context.SaveChanges();
             }
             catch (ArgumentNullException ex)
@@ -146,6 +152,11 @@ namespace EF.Data
             }
 
             ColorMessage.Get("Объект удалён", ConsoleColor.Green);
+        }
+
+        public void Find()
+        {
+            throw new NotImplementedException();
         }
     }
 }

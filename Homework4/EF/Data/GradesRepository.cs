@@ -1,4 +1,5 @@
-﻿using EF.DbModels;
+﻿using EF.Data.Interfaces;
+using EF.DbModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using WritelineLibrary;
 
 namespace EF.Data
 {
-    public class GradesRepository
+    public class GradesRepository : IGradesRepository
     {
         private readonly Context _context;
 
@@ -139,6 +140,11 @@ namespace EF.Data
             }
 
             ColorMessage.Get("Объект удалён", ConsoleColor.Green);
+        }
+
+        public void Find()
+        {
+            throw new NotImplementedException();
         }
     }
 }

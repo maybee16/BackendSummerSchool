@@ -15,6 +15,7 @@ namespace EF.DbModels
         public string LastName { get; set; }
         public string? Patronymic { get; set; }
         public Guid DepartmentsId { get; set; }
+        public string Department { get; set; }
         public ICollection<StudentsMentors> StudentsMentors { get; set; }
         public Departments Departments { get; set; }
 
@@ -51,6 +52,11 @@ namespace EF.DbModels
 
             builder
                 .Property(x => x.DepartmentsId)
+                .IsRequired();
+
+            builder
+                .Property(x => x.Department)
+                .HasMaxLength(8)
                 .IsRequired();
 
             //builder

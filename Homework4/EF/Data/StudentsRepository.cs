@@ -1,22 +1,32 @@
-﻿using EF.DbModels;
+﻿using EF.Data.Interfaces;
+using EF.DbModels;
 using Microsoft.EntityFrameworkCore;
 using WritelineLibrary;
 
 namespace EF.Data
 {
-    public class StudentRepository
+    public class StudentsRepository : IStudentsRepository
     {
         private readonly Context _context;
+        //private readonly IContext _context;
 
-        public StudentRepository()
+        //public StudentRepository(IContext context)
+        //{
+        //    _context = context;
+        //}
+
+        public StudentsRepository()
         {
             _context = new Context();
         }
 
-        public void Add(Students students)
+        public Guid Add(Students students)
         {
             try
             {
+                Departments departments = _context.Departments.First(x => x.Name == students.Department);
+                students.DepartmentsId = departments.Id;
+
                 _context.Students.Add(students);
                 _context.SaveChanges();
             }
@@ -28,28 +38,30 @@ namespace EF.Data
             {
                 ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
+
             ColorMessage.Get("Объект добавлен", ConsoleColor.Green);
+
+            return students.Id;
         }
 
-        public void GetStudent(Guid id)
+        public Students GetStudent(Guid id)
         {
             try
             {
-                Students student = _context.Students.First(x => x.Id == id);
-                Students department = _context.Students.Include(x => x.Departments).First(x => x.Id == id);
-                Students grade = _context.Students.Include(x => x.Grade).First(x => x.Id == id);
-                var studentsMentors = _context.StudentsMentors.Include(x => x.Mentors).Where(x => x.StudentsId == id);
+                Students student = _context.Students.Include(x => x.Departments).Include(x => x.Grade).Include(x => x.StudentsMentors).First(x => x.Id == id);
 
                 ColorMessage.Get("Id\tFirstName\tLastName\tPatronymic\tDepartment\tGrade", ConsoleColor.Blue);
                 ColorMessage.Get($"{student.Id}\t{student.FirstName}\t{student.LastName}\t" +
-                        $"{student.Patronymic}\t{department.Departments.Name}\t{grade.Grade.Value}", ConsoleColor.Green);
+                        $"{student.Patronymic}\t{student.Departments.Name}\t{student.Grade.Value}", ConsoleColor.Green);
 
-                // mentors list
-                foreach (var mentor in studentsMentors)
+                // mentors list don't output 
+                foreach (var mentor in student.StudentsMentors.Where(x => x.StudentsId == id))
                 {
                     ColorMessage.Get($"Ментор: {mentor.MentorsId}\t{mentor.Mentors.FirstName}\t" +
                         $"{mentor.Mentors.LastName}\t{mentor.Mentors.Patronymic}", ConsoleColor.Green);
                 }
+
+                return student;
             }
             catch (ArgumentNullException ex)
             {
@@ -59,6 +71,8 @@ namespace EF.Data
             {
                 ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
+            
+            return null;
         }
 
         public void Get()
@@ -67,12 +81,12 @@ namespace EF.Data
             {
                 List<Students> students = _context.Students.ToList();
 
-                ColorMessage.Get("Id\tFirstName\tLastName\tPatronymic\tDepartmentId", ConsoleColor.Blue);
+                ColorMessage.Get("Id\tFirstName\tLastName\tPatronymic\tDepartment", ConsoleColor.Blue);
 
                 foreach (var student in students)
                 {
                     ColorMessage.Get($"{student.Id}\t{student.FirstName}\t{student.LastName}\t" +
-                        $"{student.Patronymic}\t{student.DepartmentsId}", ConsoleColor.Green);
+                        $"{student.Patronymic}\t{student.Department}", ConsoleColor.Green);
                 }
             }
             catch (ArgumentNullException ex)
@@ -85,18 +99,21 @@ namespace EF.Data
             }
         }
 
-        public void Update(Guid id, string firstName, string lastName, string patronymic, Guid departmentsId)
+        public void Update(Guid id, string firstName, string lastName, string patronymic, string department)
         {
             try
             {
-                Students student = _context.Students.First(x => x.Id == id);
+                Students students = _context.Students.First(x => x.Id == id);
 
-                student.FirstName = firstName;
-                student.LastName = lastName;
-                student.Patronymic = patronymic;
-                student.DepartmentsId = departmentsId;
+                Departments departments = _context.Departments.First(x => x.Name == students.Department);
 
-                _context.Students.Update(student);
+                students.FirstName = firstName;
+                students.LastName = lastName;
+                students.Patronymic = patronymic;
+                students.DepartmentsId = departments.Id;
+                students.Departments = departments;
+
+                _context.Students.Update(students);
                 _context.SaveChanges();
             }
             catch (ArgumentNullException ex)
@@ -146,6 +163,11 @@ namespace EF.Data
             }
 
             ColorMessage.Get("Объект удалён", ConsoleColor.Green);
+        }
+
+        public void Find()
+        {
+            throw new NotImplementedException();
         }
     }
 }
