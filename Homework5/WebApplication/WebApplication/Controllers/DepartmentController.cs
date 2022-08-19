@@ -1,10 +1,13 @@
 ﻿using ClientService.DepartmentCommands.Interfaces;
 using ClientService.DepartmentRequests;
-using ClientService.DepartmentResponses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SchoolModels;
+using StudentResponses;
 using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace ClientService.Controllers
 {
@@ -13,57 +16,62 @@ namespace ClientService.Controllers
     public class DepartmentController : ControllerBase
     {
         [HttpPost("create")]
-        public CreateDepartmentResponse Create(
+        public async Task<BrokerResponse<Guid?>> CreateAsync(
             [FromServices] ICreateDepartmentCommand command,
             [FromBody] CreateDepartmentRequest request)
         {
-            CreateDepartmentResponse response = new();
+            BrokerResponse<Guid?> response = new();
 
-            response = command.Execute(request);
+            response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.Created : (int)HttpStatusCode.BadRequest;
 
             return response;
         }
 
         [HttpGet("get")]
-        public GetDepartmentResponse Get(
+        public async Task<BrokerResponse<DepartmentModel>> GetAsync(
             [FromServices] IGetDepartmentCommand command,
             [FromQuery] Guid id)
         {
             GetDepartmentRequest request = new();
-            GetDepartmentResponse response = new();
+            BrokerResponse<DepartmentModel> response = new();
 
             request.Id = id;
 
-            response = command.Execute(request);
+            response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.OK : (int)HttpStatusCode.BadRequest;
 
             return response;
         }
 
         [HttpPost("update")]
-        public UpdateDepartmentResponse Update(
+        public async Task<BrokerResponse<Guid?>> UpdateAsync(
             [FromServices] IUpdateDepartmentCommand command,
             [FromBody] UpdateDepartmentRequest request)
         {
-            UpdateDepartmentResponse response = new();
+            BrokerResponse<Guid?> response = new();
 
-            response = command.Execute(request);
+            response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.Created : (int)HttpStatusCode.BadRequest;
 
             return response;
         }
 
         [HttpGet("find")]
-        public FindDepartmentResponse Find(
+        public async Task<BrokerResponse<List<DepartmentModel>>> FindAsync(
             [FromServices] IFindDepartmentCommand command,
-            [FromQuery] string name)
+            [FromQuery] string name,
+            [FromQuery] int? skip,
+            [FromQuery] int? take)
         {
             FindDepartmentRequest request = new();
-            request.Name = name;
-            FindDepartmentResponse response = new();
+            BrokerResponse<List<DepartmentModel>> response = new();
 
-            response = command.Execute(request);
+            request.NameContains = name;
+            request.SkipCount = skip;
+            request.TakeCount = take;
+
+            response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.OK : (int)HttpStatusCode.BadRequest;
 
             return response;

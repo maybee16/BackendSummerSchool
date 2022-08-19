@@ -1,12 +1,12 @@
 ﻿using ClientService.DepartmentRequests;
-using ClientService.DepartmentResponses;
-using ClientService.Requests;
-using ClientService.Responses;
+using SchoolModels;
+using StudentResponses;
+using System.Threading.Tasks;
 
 namespace ClientService.DepartmentCommands.Interfaces
 {
     public interface IGetDepartmentCommand
     {
-        GetDepartmentResponse Execute(GetDepartmentRequest request);
+        Task<BrokerResponse<DepartmentModel>> ExecuteAsync(GetDepartmentRequest request);
     }
 }

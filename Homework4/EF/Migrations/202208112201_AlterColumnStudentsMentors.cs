@@ -16,12 +16,12 @@ namespace EF.Migrations
         {
             migrationBuilder.AlterColumn<string>(
                 name: "Patronymic",
-                table: "Students",
+                table: "DbStudents",
                 nullable: true);
 
             migrationBuilder.AlterColumn<string>(
                 name: "Patronymic",
-                table: "Mentors",
+                table: "DbMentors",
                 nullable: true);
         }
     }

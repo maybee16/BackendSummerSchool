@@ -1,6 +1,6 @@
-﻿using ClientService.StudentRequests;
-using ClientService.StudentValidations.Interfaces;
+﻿using ClientService.StudentValidations.Interfaces;
 using FluentValidation;
+using StudentRequests;
 
 namespace ClientService.StudentValidations
 {
@@ -8,12 +8,29 @@ namespace ClientService.StudentValidations
     {
         public FindStudentRequestValidator()
         {
-            RuleFor(request => request.Department)
-                .Cascade(CascadeMode.Stop)
-                .NotEmpty()
-                .WithMessage("Department can't be empty")
-                .Must(d => d == "Frontend" || d == "frontend" || d == "Backend" || d == "backend")
-                .WithMessage("Invalid value");
+            When(request => !string.IsNullOrEmpty(request.Department),
+                () =>
+                RuleFor(request => request.Department)
+                    .Must(d => d == "Frontend" || d == "frontend" || d == "Backend" || d == "backend")
+                    .WithMessage("Invalid value for department"));
+
+            When(request => request.GradeValue is not null,
+                () =>
+                RuleFor(request => request.GradeValue)
+                    .Must(x => x >= 0 && x <= 5)
+                    .WithMessage("Invalid value for grade"));
+
+            When(request => request.SkipCount is not null,
+                () =>
+                RuleFor(request => request.SkipCount)
+                    .Must(x => x >= 0)
+                    .WithMessage("Invalid value for skip count"));
+
+            When(request => request.TakeCount is not null,
+                () =>
+                RuleFor(request => request.TakeCount)
+                    .Must(x => x >= 0)
+                    .WithMessage("Invalid value for take count"));
         }
     }
 }

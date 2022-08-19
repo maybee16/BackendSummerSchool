@@ -1,50 +1,45 @@
-﻿using ClientService.Requests;
-using ClientService.Responses;
-using ClientService.StudentCommands.Interfaces;
+﻿using ClientService.StudentCommands.Interfaces;
 using FluentValidation;
 using FluentValidation.Results;
+using MassTransit;
+using SchoolModels;
+using StudentRequests;
+using StudentResponses;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ClientService.StudentCommands
 {
     public class GetStudentCommand : IGetStudentCommand
     {
         private readonly IValidator<GetStudentRequest> _validator;
+        private readonly IRequestClient<GetStudentRequest> _requestClient;
 
         public GetStudentCommand(
-            IValidator<GetStudentRequest> validator)
+            IValidator<GetStudentRequest> validator,
+            IRequestClient<GetStudentRequest> requestClient)
         {
             _validator = validator;
+            _requestClient = requestClient;
         }
 
-        public GetStudentResponse Execute(GetStudentRequest request)
+        public async Task<BrokerResponse<StudentModel>> ExecuteAsync(GetStudentRequest request)
         {
             ValidationResult validationResult = _validator.Validate(request);
 
             if (!validationResult.IsValid)
             {
-                return new GetStudentResponse
+                return new BrokerResponse<StudentModel>
                 {
-                    FirstName = null,
-                    LastName = null,
-                    Patronymic = null,
-                    Department = null,
-                    Grade = null,
+                    Body = null,
                     IsSuccess = false,
                     Errors = validationResult.Errors.Select(x => x.ErrorMessage).ToList()
                 };
             }
 
-            return new GetStudentResponse
-            {
-                FirstName = null,
-                LastName = null,
-                Patronymic = null,
-                Department = null,
-                Grade = null,
-                IsSuccess = true,
-                Errors = default
-            };
+            var response = await _requestClient.GetResponse<BrokerResponse<StudentModel>>(request);
+
+            return response.Message;
         }
     }
 }

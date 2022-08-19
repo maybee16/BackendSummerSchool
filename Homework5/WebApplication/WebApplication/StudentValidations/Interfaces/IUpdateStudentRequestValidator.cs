@@ -1,5 +1,5 @@
-﻿using ClientService.StudentRequests;
-using FluentValidation;
+﻿using FluentValidation;
+using StudentRequests;
 
 namespace ClientService.StudentValidations.Interfaces
 {

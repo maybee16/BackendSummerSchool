@@ -1,10 +1,13 @@
-﻿using ClientService.MentorRequests;
-using ClientService.MentorResponses;
+﻿using MentorRequests;
+using SchoolModels;
+using StudentResponses;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ClientService.MentorCommands.Interfaces
 {
     public interface IFindMentorCommand
     {
-        FindMentorResponse Execute(FindMentorRequest request);
+        Task<BrokerResponse<List<MentorModel>>> ExecuteAsync(FindMentorRequest request);
     }
 }

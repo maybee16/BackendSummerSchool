@@ -1,42 +1,44 @@
 ﻿using ClientService.GradeCommands.Interfaces;
-using ClientService.GradeRequests;
-using ClientService.GradeResponses;
 using FluentValidation;
 using FluentValidation.Results;
+using GradeRequests;
+using MassTransit;
+using StudentResponses;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ClientService.GradeCommands
 {
     public class UpdateGradeCommand : IUpdateGradeCommand
     {
         private readonly IValidator<UpdateGradeRequest> _validator;
+        private readonly IRequestClient<UpdateGradeRequest> _requestClient;
 
         public UpdateGradeCommand(
-            IValidator<UpdateGradeRequest> validator)
+            IValidator<UpdateGradeRequest> validator,
+            IRequestClient<UpdateGradeRequest> requestClient)
         {
             _validator = validator;
+            _requestClient = requestClient;
         }
 
-        public UpdateGradeResponse Execute(UpdateGradeRequest request)
+        public async Task<BrokerResponse<Guid?>> ExecuteAsync(UpdateGradeRequest request)
         {
             ValidationResult validationResult = _validator.Validate(request);
 
             if (!validationResult.IsValid)
             {
-                return new UpdateGradeResponse
+                return new BrokerResponse<Guid?>
                 {
-                    Id = null,
                     IsSuccess = false,
                     Errors = validationResult.Errors.Select(x => x.ErrorMessage).ToList()
                 };
             }
 
-            return new UpdateGradeResponse
-            {
-                Id = null,
-                IsSuccess = true,
-                Errors = default
-            };
+            var response = await _requestClient.GetResponse<BrokerResponse<Guid?>>(request);
+
+            return response.Message;
         }
     }
 }

@@ -1,10 +1,12 @@
-﻿using ClientService.MentorRequests;
-using ClientService.MentorResponses;
+﻿using MentorRequests;
+using StudentResponses;
+using System;
+using System.Threading.Tasks;
 
 namespace ClientService.MentorCommands.Interfaces
 {
     public interface IUpdateMentorCommand
     {
-        UpdateMentorResponse Execute(UpdateMentorRequest request);
+        Task<BrokerResponse<Guid?>> ExecuteAsync(UpdateMentorRequest request);
     }
 }

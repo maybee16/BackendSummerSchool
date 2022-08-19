@@ -1,10 +1,13 @@
 ﻿using ClientService.MentorCommands.Interfaces;
-using ClientService.MentorRequests;
-using ClientService.MentorResponses;
+using MentorRequests;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SchoolModels;
+using StudentResponses;
 using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace ClientService.Controllers
 {
@@ -13,58 +16,68 @@ namespace ClientService.Controllers
     public class MentorController : ControllerBase
     {
         [HttpPost("create")]
-        public CreateMentorResponse Create(
+        public async Task<BrokerResponse<Guid?>> CreateAsync(
             [FromServices] ICreateMentorCommand command,
             [FromBody] CreateMentorRequest request)
         {
-            CreateMentorResponse response = new();
+            BrokerResponse<Guid?> response = new();
 
-            response = command.Execute(request);
+            response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.Created : (int)HttpStatusCode.BadRequest;
 
             return response;
         }
 
         [HttpGet("get")]
-        public GetMentorResponse Get(
+        public async Task<BrokerResponse<MentorModel>> GetAsync(
             [FromServices] IGetMentorCommand command,
             [FromQuery] Guid id)
         {
             GetMentorRequest request = new();
-            GetMentorResponse response = new();
+            BrokerResponse<MentorModel> response = new();
 
             request.Id = id;
 
-            response = command.Execute(request);
+            response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.OK : (int)HttpStatusCode.BadRequest;
 
             return response;
         }
 
         [HttpPost("update")]
-        public UpdateMentorResponse Update(
+        public async Task<BrokerResponse<Guid?>> UpdateAsync(
             [FromServices] IUpdateMentorCommand command,
             [FromBody] UpdateMentorRequest request)
         {
-            UpdateMentorResponse response = new();
+            BrokerResponse<Guid?> response = new();
 
-            response = command.Execute(request);
+            response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.Created : (int)HttpStatusCode.BadRequest;
 
             return response;
         }
 
         [HttpGet("find")]
-        public FindMentorResponse Find(
+        public async Task<BrokerResponse<List<MentorModel>>> FindAsync(
             [FromServices] IFindMentorCommand command,
-            [FromQuery] string department)
+            [FromQuery] string firstName,
+            [FromQuery] string lastName,
+            [FromQuery] string patronymic,
+            [FromQuery] string department,
+            [FromQuery] int? skip,
+            [FromQuery] int? take)
         {
             FindMentorRequest request = new();
-            FindMentorResponse response = new();
+            BrokerResponse<List<MentorModel>> response = new();
 
+            request.FirstNameContains = firstName;
+            request.LastNameContains = lastName;
+            request.PatronymicNameContains = patronymic;
             request.Department = department;
+            request.SkipCount = skip;
+            request.TakeCount = take;
 
-            response = command.Execute(request);
+            response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.OK : (int)HttpStatusCode.BadRequest;
 
             return response;

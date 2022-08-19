@@ -1,5 +1,6 @@
 ﻿using EF.Data.Interfaces;
 using EF.DbModels;
+using EF.DbModels.Filters;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,132 +20,124 @@ namespace EF.Data
             _context = new Context();
         }
 
-        public void Add(Grades grades)
+        public async Task<Guid?> AddAsync(DbGrades grades)
         {
             try
             {
-                _context.Grades.Add(grades);
-                _context.SaveChanges();
+                await _context.DbGrades.AddAsync(grades);
+                await _context.SaveChangesAsync();
+
+                return grades.Id;
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (DbUpdateException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
-
-            ColorMessage.Get("Объект добавлен", ConsoleColor.Green);
         }
 
-        public void GetGrade(Guid id)
+        public async Task<DbGrades?> GetGradeAsync(Guid id)
         {
             try
             {
-                Grades grade = _context.Grades.First(x => x.Id == id);
-                Grades student = _context.Grades.Include(x => x.Student).First(x => x.Id == id);
-
-                ColorMessage.Get("Id\tStudentId\tStudentFirstName\tStudentLastname\tStudentPatronymic\tValue", ConsoleColor.Blue);
-                ColorMessage.Get($"{grade.Id}\t{grade.StudentId}\t{student.Student.FirstName}\t{student.Student.LastName}\t{student.Student.Patronymic}\t{grade.Value}", ConsoleColor.Green);
+                DbGrades grade = await _context.DbGrades.Include(x => x.Student).FirstAsync(x => x.Id == id);
+                
+                return grade;
             }
             catch (ArgumentNullException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (InvalidOperationException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
         }
 
-        public void Get()
+        public async Task<Guid?> UpdateAsync(Guid id, Guid studentId, int value)
         {
             try
             {
-                List<Grades> grades = _context.Grades.ToList();
-
-                ColorMessage.Get("Id\tStudentId\tValue", ConsoleColor.Blue);
-
-                foreach (var grade in grades)
-                {
-                    ColorMessage.Get($"{grade.Id}\t{grade.StudentId}\t{grade.Value}", ConsoleColor.Green);
-                }
-            }
-            catch (ArgumentNullException ex)
-            {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
-            }
-            catch (InvalidOperationException ex)
-            {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
-            }
-        }
-
-        public void Update(Guid id, Guid studentId, int value)
-        {
-            try
-            {
-                Grades grade = _context.Grades.First(x => x.Id == id);
+                DbGrades grade = await _context.DbGrades.FirstAsync(x => x.Id == id);
 
                 grade.StudentId = studentId;
                 grade.Value = value;
 
-                _context.Grades.Update(grade);
-                _context.SaveChanges();
+                _context.DbGrades.Update(grade);
+                await _context.SaveChangesAsync();
+
+                return grade.Id;
             }
             catch (ArgumentNullException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (InvalidOperationException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (DbUpdateException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
-
-            ColorMessage.Get("Объект обновлён", ConsoleColor.Green);
         }
 
-        public void Delete(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             try
             {
-                Grades grade = _context.Grades.First(x => x.Id == id);
+                DbGrades grade = await _context.DbGrades.FirstAsync(x => x.Id == id);
 
-                _context.Grades.Remove(grade);
-                _context.SaveChanges();
+                _context.DbGrades.Remove(grade);
+                await _context.SaveChangesAsync();
             }
             catch (ArgumentNullException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
             catch (InvalidOperationException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
             catch (DbUpdateException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
-
-            ColorMessage.Get("Объект удалён", ConsoleColor.Green);
         }
 
-        public void Find()
+        public async Task<List<DbGrades>> FindAsync(FindGradesFilter filter)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (filter is null)
+                {
+                    return (List<DbGrades>)Enumerable.Empty<DbGrades>();
+                }
+
+                IQueryable<DbGrades> query = _context.DbGrades.AsQueryable();
+
+                if (filter.Value is not null)
+                {
+                    query = query.Where(x => x.Value == filter.Value);
+                }
+
+                return await query.Skip(filter.SkipCount).Take(filter.TakeCount).ToListAsync();
+            }
+            catch (ArgumentNullException ex)
+            {
+                return (List<DbGrades>)Enumerable.Empty<DbGrades>();
+            }
+            catch (InvalidOperationException ex)
+            {
+                return (List<DbGrades>)Enumerable.Empty<DbGrades>();
+            }
         }
     }
 }

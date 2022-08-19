@@ -1,12 +1,12 @@
 ﻿using ClientService.DepartmentRequests;
-using ClientService.DepartmentResponses;
-using ClientService.StudentRequests;
-using ClientService.StudentResponses;
+using StudentResponses;
+using System;
+using System.Threading.Tasks;
 
 namespace ClientService.DepartmentCommands.Interfaces
 {
     public interface IUpdateDepartmentCommand
     {
-        UpdateDepartmentResponse Execute(UpdateDepartmentRequest request);
+        Task<BrokerResponse<Guid?>> ExecuteAsync(UpdateDepartmentRequest request);
     }
 }

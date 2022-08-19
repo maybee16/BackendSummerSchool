@@ -5,11 +5,11 @@ namespace EF
 {
     public class Context: DbContext, IContext
     {
-        public DbSet<Students> Students { get; set; }
-        public DbSet<Mentors> Mentors { get; set; }
-        public DbSet<Departments> Departments { get; set; }
-        public DbSet<Grades> Grades { get; set; }
-        public DbSet<StudentsMentors> StudentsMentors { get; set; }
+        public DbSet<DbStudents> DbStudents { get; set; }
+        public DbSet<DbMentors> DbMentors { get; set; }
+        public DbSet<DbDepartments> DbDepartments { get; set; }
+        public DbSet<DbGrades> DbGrades { get; set; }
+        public DbSet<DbStudentsMentors> DbStudentsMentors { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

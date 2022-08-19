@@ -1,4 +1,4 @@
-﻿using ClientService.MentorRequests;
+﻿using MentorRequests;
 using ClientService.MentorValidations.Interfaces;
 using FluentValidation;
 
@@ -39,7 +39,7 @@ namespace ClientService.MentorValidations
                 .NotEmpty()
                 .WithMessage("Department can't be empty")
                 .Must(d => d == "Frontend" || d == "frontend" || d == "Backend" || d == "backend")
-                .WithMessage("Invalid value");
+                .WithMessage("Invalid value for department");
         }
     }
 }

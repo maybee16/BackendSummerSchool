@@ -1,10 +1,12 @@
-﻿using ClientService.GradeRequests;
-using ClientService.GradeResponses;
+﻿using GradeRequests;
+using StudentResponses;
+using System;
+using System.Threading.Tasks;
 
 namespace ClientService.GradeCommands.Interfaces
 {
     public interface ICreateGradeCommand
     {
-        CreateGradeResponse Execute(CreateGradeRequest request);
+        Task<BrokerResponse<Guid?>> ExecuteAsync(CreateGradeRequest request);
     }
 }

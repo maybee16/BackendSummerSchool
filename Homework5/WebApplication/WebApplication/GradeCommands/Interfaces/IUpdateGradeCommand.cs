@@ -1,10 +1,12 @@
-﻿using ClientService.GradeRequests;
-using ClientService.GradeResponses;
+﻿using GradeRequests;
+using StudentResponses;
+using System;
+using System.Threading.Tasks;
 
 namespace ClientService.GradeCommands.Interfaces
 {
     public interface IUpdateGradeCommand
     {
-        UpdateGradeResponse Execute(UpdateGradeRequest request);
+        Task<BrokerResponse<Guid?>> ExecuteAsync(UpdateGradeRequest request);
     }
 }

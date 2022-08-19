@@ -1,42 +1,44 @@
 ﻿using ClientService.MentorCommands.Interfaces;
-using ClientService.MentorRequests;
-using ClientService.MentorResponses;
 using FluentValidation;
 using FluentValidation.Results;
+using MassTransit;
+using MentorRequests;
+using StudentResponses;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ClientService.MentorCommands
 {
     public class UpdateMentorCommand : IUpdateMentorCommand
     {
         private readonly IValidator<UpdateMentorRequest> _validator;
+        private readonly IRequestClient<UpdateMentorRequest> _requestClient;
 
         public UpdateMentorCommand(
-            IValidator<UpdateMentorRequest> validator)
+            IValidator<UpdateMentorRequest> validator,
+            IRequestClient<UpdateMentorRequest> requestClient)
         {
             _validator = validator;
+            _requestClient = requestClient;
         }
 
-        public UpdateMentorResponse Execute(UpdateMentorRequest request)
+        public async Task<BrokerResponse<Guid?>> ExecuteAsync(UpdateMentorRequest request)
         {
             ValidationResult validationResult = _validator.Validate(request);
 
             if (!validationResult.IsValid)
             {
-                return new UpdateMentorResponse
+                return new BrokerResponse<Guid?>
                 {
-                    Id = null,
                     IsSuccess = false,
                     Errors = validationResult.Errors.Select(x => x.ErrorMessage).ToList()
                 };
             }
 
-            return new UpdateMentorResponse
-            {
-                Id = null,
-                IsSuccess = true,
-                Errors = default
-            };
+            var response = await _requestClient.GetResponse<BrokerResponse<Guid?>>(request);
+
+            return response.Message;
         }
     }
 }

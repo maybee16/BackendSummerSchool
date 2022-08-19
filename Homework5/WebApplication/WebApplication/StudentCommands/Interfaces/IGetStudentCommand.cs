@@ -1,10 +1,12 @@
-﻿using ClientService.Requests;
-using ClientService.Responses;
+﻿using SchoolModels;
+using StudentRequests;
+using StudentResponses;
+using System.Threading.Tasks;
 
 namespace ClientService.StudentCommands.Interfaces
 {
     public interface IGetStudentCommand
     {
-        GetStudentResponse Execute(GetStudentRequest request);
+        Task<BrokerResponse<StudentModel>> ExecuteAsync(GetStudentRequest request);
     }
 }

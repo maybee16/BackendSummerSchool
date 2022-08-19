@@ -1,5 +1,6 @@
 ﻿using EF.Data.Interfaces;
 using EF.DbModels;
+using EF.DbModels.Filters;
 using Microsoft.EntityFrameworkCore;
 using WritelineLibrary;
 
@@ -20,92 +21,57 @@ namespace EF.Data
             _context = new Context();
         }
 
-        public Guid Add(Students students)
+        public async Task<Guid?> AddAsync(DbStudents students)
         {
             try
             {
-                Departments departments = _context.Departments.First(x => x.Name == students.Department);
+                DbDepartments departments = await _context.DbDepartments.FirstAsync(x => x.Name == students.Department);
                 students.DepartmentsId = departments.Id;
 
-                _context.Students.Add(students);
-                _context.SaveChanges();
+                await _context.DbStudents.AddAsync(students);
+                await _context.SaveChangesAsync();
+
+                return students.Id;
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (DbUpdateException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
-
-            ColorMessage.Get("Объект добавлен", ConsoleColor.Green);
-
-            return students.Id;
         }
 
-        public Students GetStudent(Guid id)
+        public async Task<DbStudents?> GetStudentAsync(Guid id)
         {
             try
             {
-                Students student = _context.Students.Include(x => x.Departments).Include(x => x.Grade).Include(x => x.StudentsMentors).First(x => x.Id == id);
-
-                ColorMessage.Get("Id\tFirstName\tLastName\tPatronymic\tDepartment\tGrade", ConsoleColor.Blue);
-                ColorMessage.Get($"{student.Id}\t{student.FirstName}\t{student.LastName}\t" +
-                        $"{student.Patronymic}\t{student.Departments.Name}\t{student.Grade.Value}", ConsoleColor.Green);
-
-                // mentors list don't output 
-                foreach (var mentor in student.StudentsMentors.Where(x => x.StudentsId == id))
-                {
-                    ColorMessage.Get($"Ментор: {mentor.MentorsId}\t{mentor.Mentors.FirstName}\t" +
-                        $"{mentor.Mentors.LastName}\t{mentor.Mentors.Patronymic}", ConsoleColor.Green);
-                }
+                DbStudents student = await _context.DbStudents
+                    .Include(x => x.Departments)
+                    .Include(x => x.Grade)
+                    .Include(x => x.StudentsMentors)
+                    .FirstAsync(x => x.Id == id);
 
                 return student;
             }
             catch (ArgumentNullException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (InvalidOperationException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
-            }
-            
-            return null;
-        }
-
-        public void Get()
-        {
-            try
-            {
-                List<Students> students = _context.Students.ToList();
-
-                ColorMessage.Get("Id\tFirstName\tLastName\tPatronymic\tDepartment", ConsoleColor.Blue);
-
-                foreach (var student in students)
-                {
-                    ColorMessage.Get($"{student.Id}\t{student.FirstName}\t{student.LastName}\t" +
-                        $"{student.Patronymic}\t{student.Department}", ConsoleColor.Green);
-                }
-            }
-            catch (ArgumentNullException ex)
-            {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
-            }
-            catch (InvalidOperationException ex)
-            {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
         }
 
-        public void Update(Guid id, string firstName, string lastName, string patronymic, string department)
+        public async Task<Guid?> UpdateAsync(Guid id, string firstName, string lastName, string patronymic, string department)
         {
             try
             {
-                Students students = _context.Students.First(x => x.Id == id);
+                DbStudents students = await _context.DbStudents.FirstAsync(x => x.Id == id);
 
-                Departments departments = _context.Departments.First(x => x.Name == students.Department);
+                DbDepartments departments = await _context.DbDepartments.FirstAsync(x => x.Name == students.Department);
 
                 students.FirstName = firstName;
                 students.LastName = lastName;
@@ -113,61 +79,106 @@ namespace EF.Data
                 students.DepartmentsId = departments.Id;
                 students.Departments = departments;
 
-                _context.Students.Update(students);
-                _context.SaveChanges();
+                _context.DbStudents.Update(students);
+                await _context.SaveChangesAsync();
+
+                return students.Id;
             }
             catch (ArgumentNullException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (InvalidOperationException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (DbUpdateException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
-
-            ColorMessage.Get("Объект обновлён", ConsoleColor.Green);
         }
 
-        public void Delete(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             try
             {
-                Students student = _context.Students.First(x => x.Id == id);
+                DbStudents student = await _context.DbStudents.FirstAsync(x => x.Id == id);
 
-                _context.Students.Remove(student);
-                _context.SaveChanges();
+                _context.DbStudents.Remove(student);
+                await _context.SaveChangesAsync();
             }
             catch (ArgumentNullException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                //ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
             catch (InvalidOperationException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                //ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                //ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
             catch (DbUpdateException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                //ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
 
-            ColorMessage.Get("Объект удалён", ConsoleColor.Green);
+            //ColorMessage.Get("Объект удалён", ConsoleColor.Green);
         }
 
-        public void Find()
+        public async Task<List<DbStudents>> FindAsync(FindStudentsFilter filter)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (filter is null)
+                {
+                    return (List<DbStudents>)Enumerable.Empty<DbStudents>();
+                }
+
+                IQueryable<DbStudents> query = _context.DbStudents.Include(x => x.Grade).AsQueryable();
+
+                if (filter.Department is not null)
+                {
+                    //DbDepartments dep = await _context.DbDepartments.FirstAsync(x => x.Name == filter.Department);
+
+                    query = query.Where(x => x.Department == filter.Department);
+                }
+
+                if (filter.GradeValue is not null)
+                {
+                    query = query.Where(x => x.Grade.Value == filter.GradeValue);
+                }
+                
+                if (!string.IsNullOrEmpty(filter.FirstNameContains))
+                {
+                    query = query.Where(x => x.FirstName.Contains(filter.FirstNameContains));
+                }
+
+                if (!string.IsNullOrEmpty(filter.LastNameContains))
+                {
+                    query = query.Where(x => x.FirstName.Contains(filter.FirstNameContains));
+                }
+
+                if (!string.IsNullOrEmpty(filter.PatronymicNameContains))
+                {
+                    query = query.Where(x => x.FirstName.Contains(filter.FirstNameContains));
+                }
+
+                return await query.Skip(filter.SkipCount).Take(filter.TakeCount).ToListAsync();
+            }
+            catch (ArgumentNullException ex)
+            {
+                return (List<DbStudents>)Enumerable.Empty<DbStudents>();
+            }
+            catch (InvalidOperationException ex)
+            {
+                return (List<DbStudents>)Enumerable.Empty<DbStudents>();
+            }
         }
     }
 }

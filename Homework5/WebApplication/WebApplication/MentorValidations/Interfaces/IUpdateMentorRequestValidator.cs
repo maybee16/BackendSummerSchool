@@ -1,4 +1,4 @@
-﻿using ClientService.MentorRequests;
+﻿using MentorRequests;
 using FluentValidation;
 
 namespace ClientService.MentorValidations.Interfaces

@@ -1,10 +1,12 @@
-﻿using ClientService.MentorRequests;
-using ClientService.MentorResponses;
+﻿using MentorRequests;
+using StudentResponses;
+using System;
+using System.Threading.Tasks;
 
 namespace ClientService.MentorCommands.Interfaces
 {
     public interface ICreateMentorCommand
     {
-        CreateMentorResponse Execute(CreateMentorRequest request);
+        Task<BrokerResponse<Guid?>> ExecuteAsync(CreateMentorRequest request);
     }
 }

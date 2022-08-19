@@ -1,4 +1,5 @@
 ﻿using EF.DbModels;
+using EF.DbModels.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,10 @@ namespace EF.Data.Interfaces
 {
     public interface IMentorsRepository
     {
-        void Add(Mentors mentors);
-        void GetMentor(Guid id);
-        void Get();
-        void Update(Guid id, string firstName, string lastName, string patronymic, string departments);
-        void Find();
-        void Delete(Guid id);
+        Task<Guid?> AddAsync(DbMentors mentors);
+        Task<DbMentors?> GetMentorAsync(Guid id);
+        Task<Guid?> UpdateAsync(Guid id, string firstName, string lastName, string patronymic, string departments);
+        Task<List<DbMentors>> FindAsync(FindMentorsFilter filter);
+        Task DeleteAsync(Guid id);
     }
 }

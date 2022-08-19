@@ -17,7 +17,7 @@ namespace ConsoleLibrary
         DepartmentsRepository departmentsRepository = new();
         GradesRepository gradesRepository = new();
 
-        private static void SetStudents(Students students)
+        private static void SetStudents(DbStudents students)
         {
             string str;
 
@@ -97,7 +97,7 @@ namespace ConsoleLibrary
             }
         }
 
-        private static void SetMentors(Mentors mentors)
+        private static void SetMentors(DbMentors mentors)
         {
             string str;
 
@@ -177,7 +177,7 @@ namespace ConsoleLibrary
             }
         }
 
-        private static void SetDepartments(Departments departments)
+        private static void SetDepartments(DbDepartments departments)
         {
             string str;
             ColorMessage.Get("Введите название отделения:", ConsoleColor.Yellow);
@@ -201,7 +201,7 @@ namespace ConsoleLibrary
             }
         }
 
-        private static void SetGrades(Grades grades)
+        private static void SetGrades(DbGrades grades)
         {
             string str;
             ColorMessage.Get("Введите id студента:", ConsoleColor.Yellow);
@@ -278,7 +278,7 @@ namespace ConsoleLibrary
                 {
                     if (tableName == tableList[0])
                     {
-                        Students students = new()
+                        DbStudents students = new()
                         {
                             Id = Guid.NewGuid()
                         };
@@ -288,7 +288,7 @@ namespace ConsoleLibrary
                     }
                     else if (tableName == tableList[1])
                     {
-                        Mentors mentors = new()
+                        DbMentors mentors = new()
                         {
                             Id = Guid.NewGuid()
                         };
@@ -298,7 +298,7 @@ namespace ConsoleLibrary
                     }
                     else if (tableName == tableList[2])
                     {
-                        Departments departments = new()
+                        DbDepartments departments = new()
                         {
                             Id = Guid.NewGuid()
                         };
@@ -308,7 +308,7 @@ namespace ConsoleLibrary
                     }
                     else if (tableName == tableList[3])
                     {
-                        Grades grades = new()
+                        DbGrades grades = new()
                         {
                             Id = Guid.NewGuid()
                         };
@@ -361,7 +361,7 @@ namespace ConsoleLibrary
                     if (tableName == tableList[0])
                     {
                         id = GetId();
-                        Students students = new();
+                        DbStudents students = new();
                         SetStudents(students);
 
                         studentRepository.Update(
@@ -374,7 +374,7 @@ namespace ConsoleLibrary
                     else if (tableName == tableList[1])
                     {
                         id = GetId();
-                        Mentors mentors = new();
+                        DbMentors mentors = new();
                         SetMentors(mentors);
 
                         mentorsRepository.Update(
@@ -387,7 +387,7 @@ namespace ConsoleLibrary
                     else if (tableName == tableList[2])
                     {
                         id = GetId();
-                        Departments departments = new();
+                        DbDepartments departments = new();
                         SetDepartments(departments);
 
                         departmentsRepository.Update(
@@ -397,7 +397,7 @@ namespace ConsoleLibrary
                     else if (tableName == tableList[3])
                     {
                         id = GetId();
-                        Grades grades = new();
+                        DbGrades grades = new();
                         SetGrades(grades);
 
                         gradesRepository.Update(
@@ -450,16 +450,16 @@ namespace ConsoleLibrary
             //context.Database.EnsureCreated();
             context.Database.Migrate();
 
-            //Students students = new Students()
-            //{
-            //    Id = Guid.NewGuid(),
-            //    FirstName = "qwerty",
-            //    LastName = "qwwerty",
-            //    Department = "Backend"
-            //};
+            DbStudents students = new()
+            {
+                Id = Guid.NewGuid(),
+                FirstName = "qwerty",
+                LastName = "qwwerty",
+                Department = "Frontend"
+            };
 
-            //studentRepository.Add(students);
-            Students student = studentRepository.GetStudent(Guid.Parse("7F5D5953-E371-4112-ADDB-83044F4D3073"));
+            studentRepository.Add(students);
+            //Students student = studentRepository.GetStudent(Guid.Parse("7F5D5953-E371-4112-ADDB-83044F4D3073"));
 
             while (true)
             {

@@ -1,10 +1,12 @@
-﻿using ClientService.GradeRequests;
-using ClientService.GradeResponses;
+﻿using GradeRequests;
+using SchoolModels;
+using StudentResponses;
+using System.Threading.Tasks;
 
 namespace ClientService.GradeCommands.Interfaces
 {
     public interface IGetGradeCommand
     {
-        GetGradeResponse Execute(GetGradeRequest request);
+        Task<BrokerResponse<GradeModel>> ExecuteAsync(GetGradeRequest request);
     }
 }

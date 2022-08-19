@@ -1,5 +1,5 @@
 ﻿using ClientService.DepartmentValidations.Interfaces;
-using ClientService.GradeRequests;
+using GradeRequests;
 using FluentValidation;
 
 namespace ClientService.GradeValidations

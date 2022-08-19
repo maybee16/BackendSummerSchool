@@ -1,5 +1,6 @@
 ﻿using EF.Data.Interfaces;
 using EF.DbModels;
+using EF.DbModels.Filters;
 using Microsoft.EntityFrameworkCore;
 using WritelineLibrary;
 
@@ -14,87 +15,55 @@ namespace EF.Data
             _context = new Context();
         }
 
-        public void Add(Mentors mentors)
+        public async Task<Guid?> AddAsync(DbMentors mentors)
         {
             try
             {
-                Departments departments = _context.Departments.First(x => x.Name == mentors.Department);
+                DbDepartments departments = await _context.DbDepartments.FirstAsync(x => x.Name == mentors.Department);
                 mentors.DepartmentsId = departments.Id;
 
-                _context.Mentors.Add(mentors);
-                _context.SaveChanges();
+                await _context.DbMentors.AddAsync(mentors);
+                await _context.SaveChangesAsync();
+
+                return mentors.Id;
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (DbUpdateException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
-
-            ColorMessage.Get("Объект добавлен", ConsoleColor.Green);
         }
 
-        public void GetMentor(Guid id)
+        public async Task<DbMentors?> GetMentorAsync(Guid id)
         {
             try
             {
-                Mentors mentor = _context.Mentors.First(x => x.Id == id);
-                Mentors department = _context.Mentors.Include(x => x.Departments).First(x => x.Id == id);
-                var studentsMentors = _context.StudentsMentors.Include(x => x.Students).Where(x => x.MentorsId == id);
+                DbMentors mentor = await _context.DbMentors
+                    .Include(x => x.Departments)
+                    .Include(x => x.StudentsMentors)
+                    .FirstAsync(x => x.Id == id);
 
-                ColorMessage.Get("Id\tFirstName\tLastName\tPatronymic\tDepartment", ConsoleColor.Blue);
-                ColorMessage.Get($"{mentor.Id}\t{mentor.FirstName}\t{mentor.LastName}\t" +
-                        $"{mentor.Patronymic}\t{department.Departments.Name}", ConsoleColor.Green);
-
-                // students list
-                foreach (var student in studentsMentors)
-                {
-                    ColorMessage.Get($"Студент: {student.StudentsId}\t{student.Students.FirstName}\t" +
-                        $"{student.Students.LastName}\t{student.Students.Patronymic}", ConsoleColor.Green);
-                }
+                return mentor;
             }
             catch (ArgumentNullException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (InvalidOperationException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
         }
 
-        public void Get()
+        public async Task<Guid?> UpdateAsync(Guid id, string firstName, string lastName, string patronymic, string department)
         {
             try
             {
-                List<Mentors> mentors = _context.Mentors.ToList();
-
-                ColorMessage.Get("Id\tFirstName\tLastName\tPatronymic\tDepartment", ConsoleColor.Blue);
-
-                foreach (var mentor in mentors)
-                {
-                    ColorMessage.Get($"{mentor.Id}\t{mentor.FirstName}\t{mentor.LastName}\t" +
-                        $"{mentor.Patronymic}\t{mentor.Department}", ConsoleColor.Green);
-                }
-            }
-            catch (ArgumentNullException ex)
-            {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
-            }
-            catch (InvalidOperationException ex)
-            {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
-            }
-        }
-
-        public void Update(Guid id, string firstName, string lastName, string patronymic, string department)
-        {
-            try
-            {
-                Mentors mentors = _context.Mentors.First(x => x.Id == id);
-                Departments departments = _context.Departments.First(x => x.Name == mentors.Department);
+                DbMentors mentors = await _context.DbMentors.FirstAsync(x => x.Id == id);
+                DbDepartments departments = await _context.DbDepartments.FirstAsync(x => x.Name == mentors.Department);
 
                 mentors.FirstName = firstName;
                 mentors.LastName = lastName;
@@ -102,61 +71,93 @@ namespace EF.Data
                 mentors.Department = department;
                 mentors.DepartmentsId = departments.Id;
 
-                _context.Mentors.Update(mentors);
-                _context.SaveChanges();
+                _context.DbMentors.Update(mentors);
+                await _context.SaveChangesAsync();
+
+                return mentors.Id;
             }
             catch (ArgumentNullException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (InvalidOperationException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (DbUpdateException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
-
-            ColorMessage.Get("Объект обновлён", ConsoleColor.Green);
         }
 
-        public void Delete(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             try
             {
-                Mentors mentor = _context.Mentors.First(x => x.Id == id);
+                DbMentors mentor = await _context.DbMentors.FirstAsync(x => x.Id == id);
 
-                _context.Mentors.Remove(mentor);
-                _context.SaveChanges();
+                _context.DbMentors.Remove(mentor);
+                await _context.SaveChangesAsync();
             }
             catch (ArgumentNullException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
             catch (InvalidOperationException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
             catch (DbUpdateException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
-
-            ColorMessage.Get("Объект удалён", ConsoleColor.Green);
         }
 
-        public void Find()
+        public async Task<List<DbMentors>> FindAsync(FindMentorsFilter filter)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (filter is null)
+                {
+                    return (List<DbMentors>)Enumerable.Empty<DbMentors>();
+                }
+
+                IQueryable<DbMentors> query = _context.DbMentors.AsQueryable();
+
+                if (filter.Department is not null)
+                {
+                    query = query.Where(x => x.Department == filter.Department);
+                }
+
+                if (!string.IsNullOrEmpty(filter.FirstNameContains))
+                {
+                    query = query.Where(x => x.FirstName.Contains(filter.FirstNameContains));
+                }
+
+                if (!string.IsNullOrEmpty(filter.LastNameContains))
+                {
+                    query = query.Where(x => x.FirstName.Contains(filter.FirstNameContains));
+                }
+
+                if (!string.IsNullOrEmpty(filter.PatronymicNameContains))
+                {
+                    query = query.Where(x => x.FirstName.Contains(filter.FirstNameContains));
+                }
+
+                return await query.Skip(filter.SkipCount).Take(filter.TakeCount).ToListAsync();
+            }
+            catch (ArgumentNullException ex)
+            {
+                return (List<DbMentors>)Enumerable.Empty<DbMentors>();
+            }
+            catch (InvalidOperationException ex)
+            {
+                return (List<DbMentors>)Enumerable.Empty<DbMentors>();
+            }
         }
     }
 }

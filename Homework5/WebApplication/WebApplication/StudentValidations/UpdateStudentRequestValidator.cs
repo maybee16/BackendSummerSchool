@@ -1,6 +1,6 @@
-﻿using ClientService.StudentRequests;
-using ClientService.StudentValidations.Interfaces;
+﻿using ClientService.StudentValidations.Interfaces;
 using FluentValidation;
+using StudentRequests;
 
 namespace ClientService.StudentValidations
 {
@@ -43,7 +43,7 @@ namespace ClientService.StudentValidations
                 .NotEmpty()
                 .WithMessage("Department can't be empty")
                 .Must(d => d == "Frontend" || d == "frontend" || d == "Backend" || d == "backend")
-                .WithMessage("Invalid value");
+                .WithMessage("Invalid value for department");
         }
     }
 }

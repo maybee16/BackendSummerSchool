@@ -1,42 +1,45 @@
 ﻿using ClientService.StudentCommands.Interfaces;
-using ClientService.StudentRequests;
-using ClientService.StudentResponses;
 using FluentValidation;
 using FluentValidation.Results;
+using MassTransit;
+using StudentRequests;
+using StudentResponses;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ClientService.StudentCommands
 {
     public class UpdateStudentCommand : IUpdateStudentCommand
     {
         private readonly IValidator<UpdateStudentRequest> _validator;
+        private readonly IRequestClient<UpdateStudentRequest> _requestClient;
 
         public UpdateStudentCommand(
-            IValidator<UpdateStudentRequest> validator)
+            IValidator<UpdateStudentRequest> validator,
+            IRequestClient<UpdateStudentRequest> requestClient)
         {
             _validator = validator;
+            _requestClient = requestClient;
         }
 
-        public UpdateStudentResponse Execute(UpdateStudentRequest request)
+        public async Task<BrokerResponse<Guid?>> ExecuteAsync(UpdateStudentRequest request)
         {
             ValidationResult validationResult = _validator.Validate(request);
 
             if (!validationResult.IsValid)
             {
-                return new UpdateStudentResponse
+                return new BrokerResponse<Guid?>
                 {
-                    Id = null,
+                    //Body = null,
                     IsSuccess = false,
                     Errors = validationResult.Errors.Select(x => x.ErrorMessage).ToList()
                 };
             }
 
-            return new UpdateStudentResponse
-            {
-                Id = null,
-                IsSuccess = true,
-                Errors = default
-            };
+            var response = await _requestClient.GetResponse<BrokerResponse<Guid?>>(request);
+
+            return response.Message;
         }
     }
 }

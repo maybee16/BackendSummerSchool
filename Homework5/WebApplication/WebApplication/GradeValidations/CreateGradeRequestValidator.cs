@@ -1,4 +1,4 @@
-﻿using ClientService.GradeRequests;
+﻿using GradeRequests;
 using ClientService.GradeValidations.Interfaces;
 using FluentValidation;
 
@@ -17,7 +17,7 @@ namespace ClientService.GradeValidations
                 .NotEmpty()
                 .WithMessage("Value can't be empty")
                 .Must(x => x >= 0 && x <= 5)
-                .WithMessage("Invalid value");
+                .WithMessage("Invalid value for grade");
         }
     }
 }

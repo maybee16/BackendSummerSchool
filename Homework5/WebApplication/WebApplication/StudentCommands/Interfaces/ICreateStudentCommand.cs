@@ -1,10 +1,12 @@
-﻿using ClientService.Requests;
-using ClientService.Responses;
+﻿using StudentRequests;
+using StudentResponses;
+using System;
+using System.Threading.Tasks;
 
 namespace ClientService.StudentCommands.Interfaces
 {
     public interface ICreateStudentCommand
     {
-        CreateStudentResponse Execute(CreateStudentRequest request);
+        Task<BrokerResponse<Guid?>> ExecuteAsync(CreateStudentRequest request);
     }
 }

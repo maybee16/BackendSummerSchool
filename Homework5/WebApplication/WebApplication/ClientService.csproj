@@ -5,10 +5,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Context\**" />
+    <Content Remove="Context\**" />
+    <EmbeddedResource Remove="Context\**" />
+    <None Remove="Context\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.8" />
-	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.8" />
+	<PackageReference Include="MassTransit" Version="7.1.6" />
+	<PackageReference Include="MassTransit.AspNetCore" Version="7.1.6" />
+	<PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.1.6" />
+	<PackageReference Include="MassTransit.RabbitMQ" Version="7.1.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\SchoolModels\SchoolModels.csproj" />
+    <ProjectReference Include="..\..\SchoolRequests\SchoolRequests.csproj" />
   </ItemGroup>
 
 </Project>

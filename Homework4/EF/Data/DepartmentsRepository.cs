@@ -1,12 +1,7 @@
 ﻿using EF.Data.Interfaces;
 using EF.DbModels;
+using EF.DbModels.Filters;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WritelineLibrary;
 
 namespace EF.Data
 {
@@ -19,145 +14,126 @@ namespace EF.Data
             _context = new Context();
         }
 
-        public void Add(Departments departments)
+        public async Task<Guid?> AddAsync(DbDepartments departments)
         {
             try
             {
-                _context.Departments.Add(departments);
-                _context.SaveChanges();
+                await _context.DbDepartments.AddAsync(departments);
+                await _context.SaveChangesAsync();
+
+                return departments.Id;
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (DbUpdateException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
-
-            ColorMessage.Get("Объект добавлен", ConsoleColor.Green);
         }
 
-        public void GetDepartment(Guid id)
+        public async Task<DbDepartments?> GetDepartmentAsync(Guid id)
         {
             try
             {
-                Departments department = _context.Departments.First(x => x.Id == id);
+                DbDepartments department = await _context.DbDepartments
+                    .Include(x => x.Students)
+                    .Include(x => x.Mentors)
+                    .FirstAsync(x => x.Id == id);
 
-                ColorMessage.Get("Id\tName", ConsoleColor.Blue);
-                ColorMessage.Get($"{department.Id}\t{department.Name}", ConsoleColor.Green);
-
-                Departments students = _context.Departments.Include(x => x.Students).First(x => x.Id == id);
-                Departments mentors = _context.Departments.Include(x => x.Mentors).First(x => x.Id == id);
-
-                // get students list
-                foreach (Students student in students.Students)
-                {
-                    ColorMessage.Get($"Student: {student.Id}\t{student.FirstName}\t{student.LastName}\t{student.Patronymic}", ConsoleColor.Green);
-                }
-
-                // get mentors list
-                foreach (Mentors mentor in mentors.Mentors)
-                {
-                    ColorMessage.Get($"Mentor: {mentor.Id}\t{mentor.FirstName}\t{mentor.LastName}\t{mentor.Patronymic}", ConsoleColor.Green);
-                }
+                return department;
             }
             catch (ArgumentNullException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (InvalidOperationException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
         }
 
-        public void Get()
+        public async Task<Guid?> UpdateAsync(Guid id, string name)
         {
             try
             {
-                List<Departments> departments = _context.Departments.ToList();
-
-                ColorMessage.Get("Id\tName", ConsoleColor.Blue);
-
-                foreach (var department in departments)
-                {
-                    ColorMessage.Get($"{department.Id}\t{department.Name}", ConsoleColor.Green);
-                }
-            }
-            catch (ArgumentNullException ex)
-            {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
-            }
-            catch (InvalidOperationException ex)
-            {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
-            }
-        }
-
-        public void Update(Guid id, string name)
-        {
-            try
-            {
-                Departments department = _context.Departments.First(x => x.Id == id);
+                DbDepartments department = await _context.DbDepartments.FirstAsync(x => x.Id == id);
 
                 department.Name = name;
 
-                _context.Departments.Update(department);
-                _context.SaveChanges();
+                _context.DbDepartments.Update(department);
+                await _context.SaveChangesAsync();
+
+                return department.Id;
             }
             catch (ArgumentNullException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (InvalidOperationException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
             catch (DbUpdateException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
+                return null;
             }
-
-            ColorMessage.Get("Объект обновлён", ConsoleColor.Green);
         }
 
-        public void Delete(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             try
             {
-                Departments department = _context.Departments.First(x => x.Id == id);
+                DbDepartments department = await _context.DbDepartments.FirstAsync(x => x.Id == id);
 
-                _context.Departments.Remove(department);
-                _context.SaveChanges();
+                _context.DbDepartments.Remove(department);
+                await _context.SaveChangesAsync();
             }
             catch (ArgumentNullException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
             catch (InvalidOperationException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
             catch (DbUpdateException ex)
             {
-                ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
-
-            ColorMessage.Get("Объект удалён", ConsoleColor.Green);
         }
 
-        public void Find()
+        public async Task<List<DbDepartments>> FindAsync(FindDepartmentsFilter filter)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (filter is null)
+                {
+                    return (List<DbDepartments>)Enumerable.Empty<DbDepartments>();
+                }
+
+                IQueryable<DbDepartments> query = _context.DbDepartments.AsQueryable();
+
+                if (!string.IsNullOrEmpty(filter.NameContains))
+                {
+                    query = query.Where(x => x.Name.Contains(filter.NameContains));
+                }
+
+                return await query.Skip(filter.SkipCount).Take(filter.TakeCount).ToListAsync();
+            }
+            catch (ArgumentNullException ex)
+            {
+                return (List<DbDepartments>)Enumerable.Empty<DbDepartments>();
+            }
+            catch (InvalidOperationException ex)
+            {
+                return (List<DbDepartments>)Enumerable.Empty<DbDepartments>();
+            }
         }
     }
 }

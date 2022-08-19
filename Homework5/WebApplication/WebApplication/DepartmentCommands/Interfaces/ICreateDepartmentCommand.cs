@@ -1,12 +1,12 @@
 ﻿using ClientService.DepartmentRequests;
-using ClientService.DepartmentResponses;
-using ClientService.Requests;
-using ClientService.Responses;
+using StudentResponses;
+using System;
+using System.Threading.Tasks;
 
 namespace ClientService.DepartmentCommands.Interfaces
 {
     public interface ICreateDepartmentCommand
     {
-        CreateDepartmentResponse Execute(CreateDepartmentRequest request);
+        Task<BrokerResponse<Guid?>> ExecuteAsync(CreateDepartmentRequest request);
     }
 }

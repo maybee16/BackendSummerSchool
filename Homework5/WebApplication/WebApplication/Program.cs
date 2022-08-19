@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace ClientService
 {
@@ -8,17 +9,25 @@ namespace ClientService
     {
         public static void Main()
         {
-            new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .Build();
+            try
+            {
+                new ConfigurationBuilder()
+                  .AddJsonFile("appsettings.json")
+                  .Build();
 
-            CreateHostBuilder().Build().Run();
+                CreateHostBuilder().Build().Run();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         public static IHostBuilder CreateHostBuilder() =>
             Host.CreateDefaultBuilder()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseUrls("http://localhost:9000", "http://localhost:9001");
                     webBuilder.UseStartup<Startup>();
                 });
     }

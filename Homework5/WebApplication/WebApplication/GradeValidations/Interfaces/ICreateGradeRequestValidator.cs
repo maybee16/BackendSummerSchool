@@ -1,4 +1,4 @@
-﻿using ClientService.GradeRequests;
+﻿using GradeRequests;
 using FluentValidation;
 
 namespace ClientService.GradeValidations.Interfaces

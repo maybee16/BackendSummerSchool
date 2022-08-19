@@ -1,4 +1,5 @@
 ﻿using EF.DbModels;
+using EF.DbModels.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,12 @@ using System.Threading.Tasks;
 
 namespace EF.Data.Interfaces
 {
-    internal interface IGradesRepository
+    public interface IGradesRepository
     {
-        void Add(Grades grades);
-        void GetGrade(Guid id);
-        void Get();
-        void Update(Guid id, Guid studentId, int value);
-        void Find();
-        void Delete(Guid id);
+        Task<Guid?> AddAsync(DbGrades grades);
+        Task<DbGrades?> GetGradeAsync(Guid id);
+        Task<Guid?> UpdateAsync(Guid id, Guid studentId, int value);
+        Task<List<DbGrades>> FindAsync(FindGradesFilter filter);
+        Task DeleteAsync(Guid id);
     }
 }
