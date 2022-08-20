@@ -2045,9 +2045,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj": "1.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.8",
-          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.8",
-          "WritelineLibrary": "1.0.0"
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.8"
         },
         "compile": {
           "bin/placeholder/EF.dll": {}
@@ -2074,16 +2074,6 @@
         },
         "runtime": {
           "bin/placeholder/SchoolRequests.dll": {}
-        }
-      },
-      "WritelineLibrary/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/WritelineLibrary.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/WritelineLibrary.dll": {}
         }
       }
     }
@@ -7021,11 +7011,6 @@
       "type": "project",
       "path": "../../SchoolRequests/SchoolRequests.csproj",
       "msbuildProject": "../../SchoolRequests/SchoolRequests.csproj"
-    },
-    "WritelineLibrary/1.0.0": {
-      "type": "project",
-      "path": "../../../WritelineLibrary/WritelineLibrary.csproj",
-      "msbuildProject": "../../../WritelineLibrary/WritelineLibrary.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7049,11 +7034,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\ServerService\\ServerService\\ServerService.csproj",
+      "projectUniqueName": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\ServerService\\ServerService\\ServerService.csproj",
       "projectName": "ServerService",
-      "projectPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\ServerService\\ServerService\\ServerService.csproj",
+      "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\ServerService\\ServerService\\ServerService.csproj",
       "packagesPath": "C:\\Users\\maya1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\ServerService\\ServerService\\obj\\",
+      "outputPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\ServerService\\ServerService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7074,14 +7059,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework4\\EF\\EF.csproj": {
-              "projectPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework4\\EF\\EF.csproj"
+            "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework4\\EF\\EF.csproj": {
+              "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework4\\EF\\EF.csproj"
             },
-            "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\SchoolModels\\SchoolModels.csproj": {
-              "projectPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\SchoolModels\\SchoolModels.csproj"
+            "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolModels\\SchoolModels.csproj": {
+              "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolModels\\SchoolModels.csproj"
             },
-            "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\SchoolRequests\\SchoolRequests.csproj": {
-              "projectPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\SchoolRequests\\SchoolRequests.csproj"
+            "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolRequests\\SchoolRequests.csproj": {
+              "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolRequests\\SchoolRequests.csproj"
             }
           }
         }
@@ -7146,5 +7131,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Не удалось найти сведения о проекте для \"C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj\". Если вы используете Visual Studio, причина может заключаться в том, что проект выгружен или не является частью текущего решения. В этом случае выполните восстановление из командной строки. В противном случае причина может быть связана с тем, что файл проекта является недопустимым или отсутствуют целевые объекты, необходимые для восстановления.",
+      "libraryId": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

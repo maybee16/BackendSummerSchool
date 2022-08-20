@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6dNJ3p0bCr42mP0Md9KGHZVkudJyYCk/PHSFzVwOoAG+5kukU59AZgINESOdnBrBiTG55MhZvZ/0PnlD4d4LnQ==",
+  "dgSpecHash": "HZD/hTkhNa+W/57Jh1JH/N9SCF0LBe+HREvaFIRvpzVDLdC6lIK08mUvfh3h6LjVd2pB+JOJCjNbBT3XlFZi8g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\WebApplication\\WebApplication\\ClientService.csproj",
+  "projectFilePath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\WebApplication\\WebApplication\\ClientService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maya1\\.nuget\\packages\\automatonymous\\5.1.1\\automatonymous.5.1.1.nupkg.sha512",
     "C:\\Users\\maya1\\.nuget\\packages\\fluentvalidation\\11.2.0\\fluentvalidation.11.2.0.nupkg.sha512",

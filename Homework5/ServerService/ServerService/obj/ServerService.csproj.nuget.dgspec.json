@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\ServerService\\ServerService\\ServerService.csproj": {}
+    "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\ServerService\\ServerService\\ServerService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework4\\EF\\EF.csproj": {
+    "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework4\\EF\\EF.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework4\\EF\\EF.csproj",
+        "projectUniqueName": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework4\\EF\\EF.csproj",
         "projectName": "EF",
-        "projectPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework4\\EF\\EF.csproj",
+        "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework4\\EF\\EF.csproj",
         "packagesPath": "C:\\Users\\maya1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework4\\EF\\obj\\",
+        "outputPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework4\\EF\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\WritelineLibrary\\WritelineLibrary.csproj": {
-                "projectPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\WritelineLibrary\\WritelineLibrary.csproj"
+              "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj": {
+                "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj"
               }
             }
           }
@@ -76,14 +76,14 @@
         }
       }
     },
-    "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\SchoolModels\\SchoolModels.csproj": {
+    "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolModels\\SchoolModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\SchoolModels\\SchoolModels.csproj",
+        "projectUniqueName": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolModels\\SchoolModels.csproj",
         "projectName": "SchoolModels",
-        "projectPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\SchoolModels\\SchoolModels.csproj",
+        "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolModels\\SchoolModels.csproj",
         "packagesPath": "C:\\Users\\maya1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\SchoolModels\\obj\\",
+        "outputPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolModels\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -134,14 +134,14 @@
         }
       }
     },
-    "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\SchoolRequests\\SchoolRequests.csproj": {
+    "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolRequests\\SchoolRequests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\SchoolRequests\\SchoolRequests.csproj",
+        "projectUniqueName": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolRequests\\SchoolRequests.csproj",
         "projectName": "SchoolRequests",
-        "projectPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\SchoolRequests\\SchoolRequests.csproj",
+        "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolRequests\\SchoolRequests.csproj",
         "packagesPath": "C:\\Users\\maya1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\SchoolRequests\\obj\\",
+        "outputPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolRequests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -192,14 +192,14 @@
         }
       }
     },
-    "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\ServerService\\ServerService\\ServerService.csproj": {
+    "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\ServerService\\ServerService\\ServerService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\ServerService\\ServerService\\ServerService.csproj",
+        "projectUniqueName": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\ServerService\\ServerService\\ServerService.csproj",
         "projectName": "ServerService",
-        "projectPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\ServerService\\ServerService\\ServerService.csproj",
+        "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\ServerService\\ServerService\\ServerService.csproj",
         "packagesPath": "C:\\Users\\maya1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\ServerService\\ServerService\\obj\\",
+        "outputPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\ServerService\\ServerService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -220,14 +220,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework4\\EF\\EF.csproj": {
-                "projectPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework4\\EF\\EF.csproj"
+              "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework4\\EF\\EF.csproj": {
+                "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework4\\EF\\EF.csproj"
               },
-              "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\SchoolModels\\SchoolModels.csproj": {
-                "projectPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\SchoolModels\\SchoolModels.csproj"
+              "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolModels\\SchoolModels.csproj": {
+                "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolModels\\SchoolModels.csproj"
               },
-              "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\SchoolRequests\\SchoolRequests.csproj": {
-                "projectPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework5\\SchoolRequests\\SchoolRequests.csproj"
+              "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolRequests\\SchoolRequests.csproj": {
+                "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolRequests\\SchoolRequests.csproj"
               }
             }
           }
@@ -285,64 +285,6 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\WritelineLibrary\\WritelineLibrary.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\WritelineLibrary\\WritelineLibrary.csproj",
-        "projectName": "WritelineLibrary",
-        "projectPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\WritelineLibrary\\WritelineLibrary.csproj",
-        "packagesPath": "C:\\Users\\maya1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\WritelineLibrary\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\maya1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net6.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

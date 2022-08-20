@@ -1,0 +1,12 @@
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolRequests\bin\Debug\net6.0\SchoolRequests.deps.json
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolRequests\bin\Debug\net6.0\SchoolRequests.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolRequests\bin\Debug\net6.0\SchoolRequests.pdb
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolRequests\obj\Debug\net6.0\SchoolRequests.csproj.AssemblyReference.cache
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolRequests\obj\Debug\net6.0\SchoolRequests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolRequests\obj\Debug\net6.0\SchoolRequests.AssemblyInfoInputs.cache
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolRequests\obj\Debug\net6.0\SchoolRequests.AssemblyInfo.cs
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolRequests\obj\Debug\net6.0\SchoolRequests.csproj.CoreCompileInputs.cache
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolRequests\obj\Debug\net6.0\SchoolRequests.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolRequests\obj\Debug\net6.0\refint\SchoolRequests.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolRequests\obj\Debug\net6.0\SchoolRequests.pdb
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolRequests\obj\Debug\net6.0\ref\SchoolRequests.dll

@@ -597,16 +597,6 @@
             "rid": "win"
           }
         }
-      },
-      "WritelineLibrary/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/WritelineLibrary.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/WritelineLibrary.dll": {}
-        }
       }
     }
   },
@@ -1772,18 +1762,13 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
-    },
-    "WritelineLibrary/1.0.0": {
-      "type": "project",
-      "path": "../../WritelineLibrary/WritelineLibrary.csproj",
-      "msbuildProject": "../../WritelineLibrary/WritelineLibrary.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj",
       "Microsoft.EntityFrameworkCore >= 6.0.8",
-      "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.8",
-      "WritelineLibrary >= 1.0.0"
+      "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.8"
     ]
   },
   "packageFolders": {
@@ -1793,11 +1778,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework4\\EF\\EF.csproj",
+      "projectUniqueName": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework4\\EF\\EF.csproj",
       "projectName": "EF",
-      "projectPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework4\\EF\\EF.csproj",
+      "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework4\\EF\\EF.csproj",
       "packagesPath": "C:\\Users\\maya1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\Homework4\\EF\\obj\\",
+      "outputPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework4\\EF\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1818,8 +1803,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\WritelineLibrary\\WritelineLibrary.csproj": {
-              "projectPath": "C:\\Users\\maya1\\source\\repos\\BackendSummerSchool\\WritelineLibrary\\WritelineLibrary.csproj"
+            "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj": {
+              "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj"
             }
           }
         }
@@ -1861,5 +1846,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Не удалось найти сведения о проекте для \"C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj\". Если вы используете Visual Studio, причина может заключаться в том, что проект выгружен или не является частью текущего решения. В этом случае выполните восстановление из командной строки. В противном случае причина может быть связана с тем, что файл проекта является недопустимым или отсутствуют целевые объекты, необходимые для восстановления.",
+      "libraryId": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

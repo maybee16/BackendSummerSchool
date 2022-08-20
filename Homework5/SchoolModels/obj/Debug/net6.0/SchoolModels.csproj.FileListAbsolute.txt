@@ -1,0 +1,12 @@
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolModels\bin\Debug\net6.0\SchoolModels.deps.json
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolModels\bin\Debug\net6.0\SchoolModels.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolModels\bin\Debug\net6.0\SchoolModels.pdb
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolModels\obj\Debug\net6.0\SchoolModels.csproj.AssemblyReference.cache
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolModels\obj\Debug\net6.0\SchoolModels.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolModels\obj\Debug\net6.0\SchoolModels.AssemblyInfoInputs.cache
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolModels\obj\Debug\net6.0\SchoolModels.AssemblyInfo.cs
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolModels\obj\Debug\net6.0\SchoolModels.csproj.CoreCompileInputs.cache
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolModels\obj\Debug\net6.0\SchoolModels.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolModels\obj\Debug\net6.0\refint\SchoolModels.dll
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolModels\obj\Debug\net6.0\SchoolModels.pdb
+C:\Users\maya1\source\repos\BackendSummerSchool\Homework5\SchoolModels\obj\Debug\net6.0\ref\SchoolModels.dll
