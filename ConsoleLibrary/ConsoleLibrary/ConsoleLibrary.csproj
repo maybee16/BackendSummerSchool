@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Homework4\EF\EF.csproj" />
+    <ProjectReference Include="..\..\WritelineLibrary\WritelineLibrary.csproj" />
+  </ItemGroup>
+
+</Project>
