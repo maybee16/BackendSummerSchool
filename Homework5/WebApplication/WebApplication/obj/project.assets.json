@@ -1552,26 +1552,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
-      },
-      "SchoolModels/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/SchoolModels.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/SchoolModels.dll": {}
-        }
-      },
-      "SchoolRequests/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/SchoolRequests.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/SchoolRequests.dll": {}
-        }
       }
     }
   },
@@ -5497,16 +5477,6 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
-    },
-    "SchoolModels/1.0.0": {
-      "type": "project",
-      "path": "../../SchoolModels/SchoolModels.csproj",
-      "msbuildProject": "../../SchoolModels/SchoolModels.csproj"
-    },
-    "SchoolRequests/1.0.0": {
-      "type": "project",
-      "path": "../../SchoolRequests/SchoolRequests.csproj",
-      "msbuildProject": "../../SchoolRequests/SchoolRequests.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -5516,8 +5486,6 @@
       "MassTransit.AspNetCore >= 7.1.6",
       "MassTransit.Extensions.DependencyInjection >= 7.1.6",
       "MassTransit.RabbitMQ >= 7.1.6",
-      "SchoolModels >= 1.0.0",
-      "SchoolRequests >= 1.0.0",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
@@ -5552,14 +5520,7 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {
-            "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolModels\\SchoolModels.csproj": {
-              "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolModels\\SchoolModels.csproj"
-            },
-            "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolRequests\\SchoolRequests.csproj": {
-              "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolRequests\\SchoolRequests.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

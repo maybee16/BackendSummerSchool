@@ -2,7 +2,6 @@
 using EF.DbModels;
 using EF.DbModels.Filters;
 using Microsoft.EntityFrameworkCore;
-using WritelineLibrary;
 
 namespace EF.Data
 {
@@ -27,11 +26,11 @@ namespace EF.Data
 
                 return mentors.Id;
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
                 return null;
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 return null;
             }
@@ -48,11 +47,11 @@ namespace EF.Data
 
                 return mentor;
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 return null;
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 return null;
             }
@@ -76,19 +75,19 @@ namespace EF.Data
 
                 return mentors.Id;
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 return null;
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 return null;
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
                 return null;
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 return null;
             }
@@ -103,16 +102,16 @@ namespace EF.Data
                 _context.DbMentors.Remove(mentor);
                 await _context.SaveChangesAsync();
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
             }
         }
@@ -150,11 +149,11 @@ namespace EF.Data
 
                 return await query.Skip(filter.SkipCount).Take(filter.TakeCount).ToListAsync();
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 return (List<DbMentors>)Enumerable.Empty<DbMentors>();
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 return (List<DbMentors>)Enumerable.Empty<DbMentors>();
             }

@@ -1766,7 +1766,6 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj",
       "Microsoft.EntityFrameworkCore >= 6.0.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.8"
     ]
@@ -1802,11 +1801,7 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {
-            "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj": {
-              "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -1846,16 +1841,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1105",
-      "level": "Error",
-      "message": "Не удалось найти сведения о проекте для \"C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj\". Если вы используете Visual Studio, причина может заключаться в том, что проект выгружен или не является частью текущего решения. В этом случае выполните восстановление из командной строки. В противном случае причина может быть связана с тем, что файл проекта является недопустимым или отсутствуют целевые объекты, необходимые для восстановления.",
-      "libraryId": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  }
 }

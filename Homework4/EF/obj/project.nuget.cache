@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "ZrZTsKpKyNhNqSDWp4KV2ZN7YC0Vsbgfpoa4LM7BNfrG8l5BvBcPA654h+/0y3MlEZCuJY8/pjxVkKgoGL+WIA==",
-  "success": false,
+  "dgSpecHash": "jE4f0QA3JxpINrlV1r3ovbUYVXgumddVH9JProDWiTTRtnUGBtImYMkOHADM5qssVL6hfeEd9Ac/IKH/tEIUpw==",
+  "success": true,
   "projectFilePath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework4\\EF\\EF.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maya1\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
@@ -45,15 +45,5 @@
     "C:\\Users\\maya1\\.nuget\\packages\\system.text.encoding.codepages\\4.7.0\\system.text.encoding.codepages.4.7.0.nupkg.sha512",
     "C:\\Users\\maya1\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1105",
-      "level": "Error",
-      "message": "Не удалось найти сведения о проекте для \"C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj\". Если вы используете Visual Studio, причина может заключаться в том, что проект выгружен или не является частью текущего решения. В этом случае выполните восстановление из командной строки. В противном случае причина может быть связана с тем, что файл проекта является недопустимым или отсутствуют целевые объекты, необходимые для восстановления.",
-      "libraryId": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  "logs": []
 }

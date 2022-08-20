@@ -2,12 +2,6 @@
 using EF.DbModels;
 using EF.DbModels.Filters;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WritelineLibrary;
 
 namespace EF.Data
 {
@@ -29,11 +23,11 @@ namespace EF.Data
 
                 return grades.Id;
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
                 return null;
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 return null;
             }
@@ -44,14 +38,14 @@ namespace EF.Data
             try
             {
                 DbGrades grade = await _context.DbGrades.Include(x => x.Student).FirstAsync(x => x.Id == id);
-                
+
                 return grade;
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 return null;
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 return null;
             }
@@ -71,19 +65,19 @@ namespace EF.Data
 
                 return grade.Id;
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 return null;
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 return null;
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
                 return null;
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 return null;
             }
@@ -98,16 +92,16 @@ namespace EF.Data
                 _context.DbGrades.Remove(grade);
                 await _context.SaveChangesAsync();
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
             }
         }
@@ -130,11 +124,11 @@ namespace EF.Data
 
                 return await query.Skip(filter.SkipCount).Take(filter.TakeCount).ToListAsync();
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 return (List<DbGrades>)Enumerable.Empty<DbGrades>();
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 return (List<DbGrades>)Enumerable.Empty<DbGrades>();
             }

@@ -2045,7 +2045,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj": "1.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.8"
         },
@@ -2054,26 +2053,6 @@
         },
         "runtime": {
           "bin/placeholder/EF.dll": {}
-        }
-      },
-      "SchoolModels/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/SchoolModels.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/SchoolModels.dll": {}
-        }
-      },
-      "SchoolRequests/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/SchoolRequests.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/SchoolRequests.dll": {}
         }
       }
     }
@@ -7001,16 +6980,6 @@
       "type": "project",
       "path": "../../../Homework4/EF/EF.csproj",
       "msbuildProject": "../../../Homework4/EF/EF.csproj"
-    },
-    "SchoolModels/1.0.0": {
-      "type": "project",
-      "path": "../../SchoolModels/SchoolModels.csproj",
-      "msbuildProject": "../../SchoolModels/SchoolModels.csproj"
-    },
-    "SchoolRequests/1.0.0": {
-      "type": "project",
-      "path": "../../SchoolRequests/SchoolRequests.csproj",
-      "msbuildProject": "../../SchoolRequests/SchoolRequests.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7022,8 +6991,6 @@
       "MassTransit.RabbitMQ >= 7.1.6",
       "Microsoft.EntityFrameworkCore >= 6.0.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.8",
-      "SchoolModels >= 1.0.0",
-      "SchoolRequests >= 1.0.0",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
@@ -7061,12 +7028,6 @@
           "projectReferences": {
             "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework4\\EF\\EF.csproj": {
               "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework4\\EF\\EF.csproj"
-            },
-            "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolModels\\SchoolModels.csproj": {
-              "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolModels\\SchoolModels.csproj"
-            },
-            "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolRequests\\SchoolRequests.csproj": {
-              "projectPath": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\Homework5\\SchoolRequests\\SchoolRequests.csproj"
             }
           }
         }
@@ -7131,16 +7092,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1105",
-      "level": "Error",
-      "message": "Не удалось найти сведения о проекте для \"C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj\". Если вы используете Visual Studio, причина может заключаться в том, что проект выгружен или не является частью текущего решения. В этом случае выполните восстановление из командной строки. В противном случае причина может быть связана с тем, что файл проекта является недопустимым или отсутствуют целевые объекты, необходимые для восстановления.",
-      "libraryId": "C:\\Users\\maya1\\Desktop\\BackendSummerSchool\\BackendSummerSchool-main\\WritelineLibrary\\WritelineLibrary.csproj",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  }
 }

@@ -2,7 +2,6 @@
 using EF.DbModels;
 using EF.DbModels.Filters;
 using Microsoft.EntityFrameworkCore;
-using WritelineLibrary;
 
 namespace EF.Data
 {
@@ -33,11 +32,11 @@ namespace EF.Data
 
                 return students.Id;
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
                 return null;
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 return null;
             }
@@ -55,11 +54,11 @@ namespace EF.Data
 
                 return student;
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 return null;
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 return null;
             }
@@ -84,19 +83,19 @@ namespace EF.Data
 
                 return students.Id;
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 return null;
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 return null;
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
                 return null;
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 return null;
             }
@@ -111,19 +110,19 @@ namespace EF.Data
                 _context.DbStudents.Remove(student);
                 await _context.SaveChangesAsync();
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 //ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 //ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
                 //ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 //ColorMessage.Get(ex.Message, ConsoleColor.Red);
             }
@@ -153,7 +152,7 @@ namespace EF.Data
                 {
                     query = query.Where(x => x.Grade.Value == filter.GradeValue);
                 }
-                
+
                 if (!string.IsNullOrEmpty(filter.FirstNameContains))
                 {
                     query = query.Where(x => x.FirstName.Contains(filter.FirstNameContains));
@@ -171,11 +170,11 @@ namespace EF.Data
 
                 return await query.Skip(filter.SkipCount).Take(filter.TakeCount).ToListAsync();
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 return (List<DbStudents>)Enumerable.Empty<DbStudents>();
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 return (List<DbStudents>)Enumerable.Empty<DbStudents>();
             }

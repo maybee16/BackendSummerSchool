@@ -23,11 +23,11 @@ namespace EF.Data
 
                 return departments.Id;
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
                 return null;
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 return null;
             }
@@ -44,11 +44,11 @@ namespace EF.Data
 
                 return department;
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 return null;
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 return null;
             }
@@ -67,19 +67,19 @@ namespace EF.Data
 
                 return department.Id;
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 return null;
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 return null;
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
                 return null;
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 return null;
             }
@@ -94,16 +94,16 @@ namespace EF.Data
                 _context.DbDepartments.Remove(department);
                 await _context.SaveChangesAsync();
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
             }
         }
@@ -126,11 +126,11 @@ namespace EF.Data
 
                 return await query.Skip(filter.SkipCount).Take(filter.TakeCount).ToListAsync();
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 return (List<DbDepartments>)Enumerable.Empty<DbDepartments>();
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 return (List<DbDepartments>)Enumerable.Empty<DbDepartments>();
             }

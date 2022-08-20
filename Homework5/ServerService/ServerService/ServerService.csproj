@@ -16,8 +16,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Homework4\EF\EF.csproj" />
-    <ProjectReference Include="..\..\SchoolModels\SchoolModels.csproj" />
-    <ProjectReference Include="..\..\SchoolRequests\SchoolRequests.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SchoolModels">
+      <HintPath>..\..\SchoolModels\bin\Debug\net6.0\SchoolModels.dll</HintPath>
+    </Reference>
+    <Reference Include="SchoolRequests">
+      <HintPath>..\..\SchoolRequests\bin\Debug\net6.0\SchoolRequests.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
