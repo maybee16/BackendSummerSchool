@@ -20,9 +20,7 @@ namespace ClientService.Controllers
             [FromServices] ICreateDepartmentCommand command,
             [FromBody] CreateDepartmentRequest request)
         {
-            BrokerResponse<Guid?> response = new();
-
-            response = await command.ExecuteAsync(request);
+            BrokerResponse<Guid?> response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.Created : (int)HttpStatusCode.BadRequest;
 
             return response;
@@ -34,11 +32,10 @@ namespace ClientService.Controllers
             [FromQuery] Guid id)
         {
             GetDepartmentRequest request = new();
-            BrokerResponse<DepartmentModel> response = new();
-
+            
             request.Id = id;
 
-            response = await command.ExecuteAsync(request);
+            BrokerResponse<DepartmentModel> response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.OK : (int)HttpStatusCode.BadRequest;
 
             return response;
@@ -49,9 +46,7 @@ namespace ClientService.Controllers
             [FromServices] IUpdateDepartmentCommand command,
             [FromBody] UpdateDepartmentRequest request)
         {
-            BrokerResponse<Guid?> response = new();
-
-            response = await command.ExecuteAsync(request);
+            BrokerResponse<Guid?> response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.Created : (int)HttpStatusCode.BadRequest;
 
             return response;
@@ -65,13 +60,12 @@ namespace ClientService.Controllers
             [FromQuery] int? take)
         {
             FindDepartmentRequest request = new();
-            BrokerResponse<List<DepartmentModel>> response = new();
-
+            
             request.NameContains = name;
             request.SkipCount = skip;
             request.TakeCount = take;
 
-            response = await command.ExecuteAsync(request);
+            BrokerResponse<List<DepartmentModel>> response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.OK : (int)HttpStatusCode.BadRequest;
 
             return response;

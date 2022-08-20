@@ -20,9 +20,7 @@ namespace ClientService.Controllers
             [FromServices] ICreateStudentCommand command,
             [FromBody] CreateStudentRequest request)
         {
-            BrokerResponse<Guid?> response = new();
-
-            response = await command.ExecuteAsync(request);
+            BrokerResponse<Guid?> response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.Created : (int)HttpStatusCode.BadRequest;
 
             return response;
@@ -33,12 +31,11 @@ namespace ClientService.Controllers
             [FromServices] IGetStudentCommand command,
             [FromQuery] Guid id)
         {
-            BrokerResponse<StudentModel> response = new();
             GetStudentRequest request = new();
 
             request.Id = id;
 
-            response = await command.ExecuteAsync(request);
+            BrokerResponse<StudentModel> response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.OK : (int)HttpStatusCode.BadRequest;
 
             return response;
@@ -49,9 +46,7 @@ namespace ClientService.Controllers
             [FromServices] IUpdateStudentCommand command,
             [FromBody] UpdateStudentRequest request)
         {
-            BrokerResponse<Guid?> response = new();
-
-            response = await command.ExecuteAsync(request);
+            BrokerResponse<Guid?> response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.Created : (int)HttpStatusCode.BadRequest;
 
             return response;
@@ -69,8 +64,7 @@ namespace ClientService.Controllers
             [FromQuery] int? take)
         {
             FindStudentRequest request = new();
-            BrokerResponse<List<StudentModel>> response = new();
-
+            
             request.FirstNameContains = firstName;
             request.LastNameContains = lastName;
             request.PatronymicNameContains = patronymic;
@@ -79,7 +73,7 @@ namespace ClientService.Controllers
             request.SkipCount = skip;
             request.TakeCount = take;
 
-            response = await command.ExecuteAsync(request);
+            BrokerResponse<List<StudentModel>> response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.OK : (int)HttpStatusCode.BadRequest;
 
             return response;

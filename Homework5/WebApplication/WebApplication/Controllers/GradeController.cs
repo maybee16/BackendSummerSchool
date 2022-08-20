@@ -19,9 +19,7 @@ namespace ClientService.Controllers
             [FromServices] ICreateGradeCommand command,
             [FromBody] CreateGradeRequest request)
         {
-            BrokerResponse<Guid?> response = new();
-
-            response = await command.ExecuteAsync(request);
+            BrokerResponse<Guid?> response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.Created : (int)HttpStatusCode.BadRequest;
 
             return response;
@@ -33,11 +31,10 @@ namespace ClientService.Controllers
             [FromQuery] Guid id)
         {
             GetGradeRequest request = new();
-            BrokerResponse<GradeModel> response = new();
-
+            
             request.Id = id;
 
-            response = await command.ExecuteAsync(request);
+            BrokerResponse<GradeModel> response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.OK : (int)HttpStatusCode.BadRequest;
 
             return response;
@@ -48,9 +45,7 @@ namespace ClientService.Controllers
             [FromServices] IUpdateGradeCommand command,
             [FromBody] UpdateGradeRequest request)
         {
-            BrokerResponse<Guid?> response = new();
-
-            response = await command.ExecuteAsync(request);
+            BrokerResponse<Guid?> response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.Created : (int)HttpStatusCode.BadRequest;
 
             return response;
@@ -64,13 +59,12 @@ namespace ClientService.Controllers
             [FromQuery] int? take)
         {
             FindGradeRequest request = new();
-            BrokerResponse<List<GradeModel>> response = new();
-
+            
             request.Value = value;
             request.SkipCount = skip;
             request.TakeCount = take;
 
-            response = await command.ExecuteAsync(request);
+            BrokerResponse<List<GradeModel>> response = await command.ExecuteAsync(request);
             HttpContext.Response.StatusCode = response.IsSuccess ? (int)HttpStatusCode.OK : (int)HttpStatusCode.BadRequest;
 
             return response;
