@@ -13,3 +13,15 @@ C:\Users\maya1\source\repos\BackendSummerSchool\Homework4\EF\obj\Debug\net6.0\EF
 C:\Users\maya1\source\repos\BackendSummerSchool\Homework4\EF\obj\Debug\net6.0\refint\EF.dll
 C:\Users\maya1\source\repos\BackendSummerSchool\Homework4\EF\obj\Debug\net6.0\EF.pdb
 C:\Users\maya1\source\repos\BackendSummerSchool\Homework4\EF\obj\Debug\net6.0\ref\EF.dll
+C:\Users\maya1\Desktop\BackendSummerSchool\BackendSummerSchool-main\Homework4\EF\bin\Debug\net6.0\EF.deps.json
+C:\Users\maya1\Desktop\BackendSummerSchool\BackendSummerSchool-main\Homework4\EF\bin\Debug\net6.0\EF.dll
+C:\Users\maya1\Desktop\BackendSummerSchool\BackendSummerSchool-main\Homework4\EF\bin\Debug\net6.0\EF.pdb
+C:\Users\maya1\Desktop\BackendSummerSchool\BackendSummerSchool-main\Homework4\EF\obj\Debug\net6.0\EF.csproj.AssemblyReference.cache
+C:\Users\maya1\Desktop\BackendSummerSchool\BackendSummerSchool-main\Homework4\EF\obj\Debug\net6.0\EF.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maya1\Desktop\BackendSummerSchool\BackendSummerSchool-main\Homework4\EF\obj\Debug\net6.0\EF.AssemblyInfoInputs.cache
+C:\Users\maya1\Desktop\BackendSummerSchool\BackendSummerSchool-main\Homework4\EF\obj\Debug\net6.0\EF.AssemblyInfo.cs
+C:\Users\maya1\Desktop\BackendSummerSchool\BackendSummerSchool-main\Homework4\EF\obj\Debug\net6.0\EF.csproj.CoreCompileInputs.cache
+C:\Users\maya1\Desktop\BackendSummerSchool\BackendSummerSchool-main\Homework4\EF\obj\Debug\net6.0\EF.dll
+C:\Users\maya1\Desktop\BackendSummerSchool\BackendSummerSchool-main\Homework4\EF\obj\Debug\net6.0\refint\EF.dll
+C:\Users\maya1\Desktop\BackendSummerSchool\BackendSummerSchool-main\Homework4\EF\obj\Debug\net6.0\EF.pdb
+C:\Users\maya1\Desktop\BackendSummerSchool\BackendSummerSchool-main\Homework4\EF\obj\Debug\net6.0\ref\EF.dll

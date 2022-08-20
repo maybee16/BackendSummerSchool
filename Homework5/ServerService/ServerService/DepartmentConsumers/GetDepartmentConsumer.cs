@@ -1,30 +1,30 @@
-﻿using GradeRequests;
+﻿using ClientService.DepartmentRequests;
 using EF.Data.Interfaces;
 using EF.DbModels;
 using MassTransit;
-using MentorRequests;
 using SchoolModels;
-using ServerService.Mappers;
-using StudentRequests;
+using ServerService.Mappers.Interfaces;
 using StudentResponses;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ClientService.DepartmentRequests;
 
 namespace ServerService.DepartmentConsumers
 {
     public class GetDepartmentConsumer : IConsumer<GetDepartmentRequest>
     {
         private readonly IDepartmentsRepository _repository;
+        private readonly IDepartmentMapper _departmentMapper;
 
-        public GetDepartmentConsumer(IDepartmentsRepository repository)
+        public GetDepartmentConsumer(
+            IDepartmentsRepository repository,
+            IDepartmentMapper departmentMapper)
         {
             _repository = repository;
+            _departmentMapper = departmentMapper;
         }
 
         public async Task Consume(ConsumeContext<GetDepartmentRequest> context)
         {
-            //StudentModel student = StudentMapper.ToStudent(_repository.GetStudent(context.Message.Id));
             DbDepartments department = await _repository.GetDepartmentAsync(context.Message.Id);
 
             if (department is null)
@@ -41,7 +41,7 @@ namespace ServerService.DepartmentConsumers
                 await context.RespondAsync<BrokerResponse<DepartmentModel>>(
                   new()
                   {
-                      Body = DepartmentMapper.ToDepartment(department),
+                      Body = _departmentMapper.ToDepartment(department),
                       IsSuccess = true,
                       Errors = default
                   });

@@ -1,8 +1,7 @@
 ﻿using EF.Data.Interfaces;
 using MassTransit;
 using MentorRequests;
-using ServerService.Mappers;
-using StudentRequests;
+using ServerService.Mappers.Interfaces;
 using StudentResponses;
 using System;
 using System.Collections.Generic;
@@ -13,15 +12,19 @@ namespace ServerService.MentorConsumers
     public class CreateMentorConsumer : IConsumer<CreateMentorRequest>
     {
         private readonly IMentorsRepository _repository;
+        private readonly IMentorMapper _mentorMapper;
 
-        public CreateMentorConsumer(IMentorsRepository repository)
+        public CreateMentorConsumer(
+            IMentorsRepository repository,
+            IMentorMapper mentorMapper)
         {
             _repository = repository;
-         }
+            _mentorMapper = mentorMapper;
+        }
 
         public async Task Consume(ConsumeContext<CreateMentorRequest> context)
         {
-            Guid? id = await _repository.AddAsync(MentorMapper.ToDbMentor(context.Message));
+            Guid? id = await _repository.AddAsync(_mentorMapper.ToDbMentor(context.Message));
 
             if (id is null)
             {

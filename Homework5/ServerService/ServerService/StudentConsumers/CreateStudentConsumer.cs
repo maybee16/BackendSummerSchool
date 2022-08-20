@@ -1,6 +1,6 @@
 ﻿using EF.Data.Interfaces;
 using MassTransit;
-using ServerService.Mappers;
+using ServerService.Mappers.Interfaces;
 using StudentRequests;
 using StudentResponses;
 using System;
@@ -12,15 +12,19 @@ namespace ServerService.StudentConsumers
     public class CreateStudentConsumer : IConsumer<CreateStudentRequest>
     {
         private readonly IStudentsRepository _repository;
+        private readonly IStudentMapper _studentMapper;
 
-        public CreateStudentConsumer(IStudentsRepository repository)
+        public CreateStudentConsumer(
+            IStudentsRepository repository,
+            IStudentMapper studentMapper)
         {
             _repository = repository;
-         }
+            _studentMapper = studentMapper;
+        }
 
         public async Task Consume(ConsumeContext<CreateStudentRequest> context)
         {
-            Guid? id = await _repository.AddAsync(StudentMapper.ToDbStudent(context.Message));
+            Guid? id = await _repository.AddAsync(_studentMapper.ToDbStudent(context.Message));
 
             if (id is null)
             {

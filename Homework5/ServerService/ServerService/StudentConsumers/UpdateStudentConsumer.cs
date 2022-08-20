@@ -1,7 +1,5 @@
 ﻿using EF.Data.Interfaces;
 using MassTransit;
-using SchoolModels;
-using ServerService.Mappers;
 using StudentRequests;
 using StudentResponses;
 using System;

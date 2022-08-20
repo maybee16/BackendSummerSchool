@@ -1,67 +1,94 @@
 ﻿using EF.DbModels;
 using EF.DbModels.Filters;
 using SchoolModels;
+using ServerService.Mappers.Interfaces;
 using StudentRequests;
 using System.Collections.Generic;
 
 namespace ServerService.Mappers
 {
-    public static class StudentMapper
+    public class StudentMapper : IStudentMapper
     {
-        public static DbStudents ToDbStudent(CreateStudentRequest request) => new()
-        {
-            FirstName = request.FirstName,
-            LastName = request.LastName,
-            Patronymic = request.Patronymic,
-            Department = request.Department
-        };
+        private readonly IGradeMapper _gradeMapper;
 
-        public static StudentModel ToStudent(DbStudents students) => new()
+        public StudentMapper(IGradeMapper gradeMapper)
         {
-            Id = students.Id,
-            FirstName = students.FirstName,
-            LastName = students.LastName,
-            Patronymic = students.Patronymic,
-            Department = students.Department,
-            Grade = GradeMapper.ToGrade(students.Grade)
-        };
-
-        public static HashSet<StudentModel> ToStudentList(HashSet<DbStudents> dbStudents)
-        {
-            HashSet<StudentModel> students = new();
-            foreach (var dbStudent in dbStudents)
-            {
-                students.Add(ToStudent(dbStudent));
-            }
-
-            return students;
+            _gradeMapper = gradeMapper;
         }
 
-        public static FindStudentsFilter ToStudentsFilter(FindStudentRequest request)
+        public DbStudents ToDbStudent(CreateStudentRequest request)
         {
-            FindStudentsFilter filter = new();
-            filter.Department = request.Department;
-            filter.FirstNameContains = request.FirstNameContains;
-            filter.LastNameContains = request.LastNameContains;
-            filter.PatronymicNameContains = request.PatronymicNameContains;
-
-            if (request.GradeValue.HasValue)
+            return request is null ? default : new DbStudents
             {
-                filter.GradeValue = (int)request.GradeValue;
-            }
-
-            if (request.TakeCount.HasValue)
-            {
-                filter.TakeCount = (int)request.TakeCount;
-            }
-
-            if (request.SkipCount.HasValue)
-            {
-                filter.SkipCount = (int)request.SkipCount;
-            }
-
-            return filter;
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Patronymic = request.Patronymic,
+                Department = request.Department
+            };
         }
 
+        public StudentModel ToStudent(DbStudents students)
+        {
+            return students is null ? default : new StudentModel
+            {
+                Id = students.Id,
+                FirstName = students.FirstName,
+                LastName = students.LastName,
+                Patronymic = students.Patronymic,
+                Department = students.Department,
+                Grade = _gradeMapper.ToGrade(students.Grade)
+            };
+        }
+
+        public HashSet<StudentModel> ToStudentList(HashSet<DbStudents> dbStudents)
+        {
+            if (dbStudents is not null)
+            {
+                HashSet<StudentModel> students = new();
+                foreach (var dbStudent in dbStudents)
+                {
+                    students.Add(ToStudent(dbStudent));
+                }
+
+                return students;
+            }
+            else
+            {
+                return default;
+            }
+        }
+
+        public FindStudentsFilter ToStudentsFilter(FindStudentRequest request)
+        {
+            if (request is not null)
+            {
+                FindStudentsFilter filter = new();
+                filter.Department = request.Department;
+                filter.FirstNameContains = request.FirstNameContains;
+                filter.LastNameContains = request.LastNameContains;
+                filter.PatronymicNameContains = request.PatronymicNameContains;
+
+                if (request.GradeValue.HasValue)
+                {
+                    filter.GradeValue = (int)request.GradeValue;
+                }
+
+                if (request.TakeCount.HasValue)
+                {
+                    filter.TakeCount = (int)request.TakeCount;
+                }
+
+                if (request.SkipCount.HasValue)
+                {
+                    filter.SkipCount = (int)request.SkipCount;
+                }
+
+                return filter;
+            }
+            else
+            {
+                return default;
+            }
+        }
     }
 }

@@ -3,8 +3,7 @@ using EF.DbModels;
 using MassTransit;
 using MentorRequests;
 using SchoolModels;
-using ServerService.Mappers;
-using StudentRequests;
+using ServerService.Mappers.Interfaces;
 using StudentResponses;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,10 +13,14 @@ namespace ServerService.MentorConsumers
     public class GetMentorConsumer : IConsumer<GetMentorRequest>
     {
         private readonly IMentorsRepository _repository;
+        private readonly IMentorMapper _mentorMapper;
 
-        public GetMentorConsumer(IMentorsRepository repository)
+        public GetMentorConsumer(
+            IMentorsRepository repository,
+            IMentorMapper mentorMapper)
         {
             _repository = repository;
+            _mentorMapper = mentorMapper;
         }
 
         public async Task Consume(ConsumeContext<GetMentorRequest> context)
@@ -39,7 +42,7 @@ namespace ServerService.MentorConsumers
                 await context.RespondAsync<BrokerResponse<MentorModel>>(
                   new()
                   {
-                      Body = MentorMapper.ToMentor(mentor),
+                      Body = _mentorMapper.ToMentor(mentor),
                       IsSuccess = true,
                       Errors = default
                   });

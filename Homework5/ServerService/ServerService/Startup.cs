@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ServerService.DepartmentConsumers;
 using ServerService.GradeConsumers;
+using ServerService.Mappers;
+using ServerService.Mappers.Interfaces;
 using ServerService.MentorConsumers;
 using ServerService.StudentConsumers;
 
@@ -43,6 +45,11 @@ namespace ServerService
             services.AddTransient<IMentorsRepository, MentorsRepository>();
             services.AddTransient<IDepartmentsRepository, DepartmentsRepository>();
             services.AddTransient<IGradesRepository, GradesRepository>();
+
+            services.AddTransient<IStudentMapper, StudentMapper>();
+            services.AddTransient<IMentorMapper, MentorMapper>();
+            services.AddTransient<IDepartmentMapper, DepartmentMapper>();
+            services.AddTransient<IGradeMapper, GradeMapper>();
 
             services.AddMassTransit(mt =>
             {

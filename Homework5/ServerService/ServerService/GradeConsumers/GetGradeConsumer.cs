@@ -1,11 +1,9 @@
-﻿using GradeRequests;
-using EF.Data.Interfaces;
+﻿using EF.Data.Interfaces;
 using EF.DbModels;
+using GradeRequests;
 using MassTransit;
-using MentorRequests;
 using SchoolModels;
-using ServerService.Mappers;
-using StudentRequests;
+using ServerService.Mappers.Interfaces;
 using StudentResponses;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,10 +13,14 @@ namespace ServerService.GradeConsumers
     public class GetGradeConsumer : IConsumer<GetGradeRequest>
     {
         private readonly IGradesRepository _repository;
+        private readonly IGradeMapper _gradeMapper;
 
-        public GetGradeConsumer(IGradesRepository repository)
+        public GetGradeConsumer(
+            IGradesRepository repository,
+            IGradeMapper gradeMapper)
         {
             _repository = repository;
+            _gradeMapper = gradeMapper;
         }
 
         public async Task Consume(ConsumeContext<GetGradeRequest> context)
@@ -40,7 +42,7 @@ namespace ServerService.GradeConsumers
                 await context.RespondAsync<BrokerResponse<GradeModel>>(
                   new()
                   {
-                      Body = GradeMapper.ToGrade(grade),
+                      Body = _gradeMapper.ToGrade(grade),
                       IsSuccess = true,
                       Errors = default
                   });

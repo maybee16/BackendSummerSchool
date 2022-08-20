@@ -1,9 +1,6 @@
 ﻿using EF.Data.Interfaces;
 using MassTransit;
 using MentorRequests;
-using SchoolModels;
-using ServerService.Mappers;
-using StudentRequests;
 using StudentResponses;
 using System;
 using System.Collections.Generic;
